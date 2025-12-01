@@ -1,0 +1,170 @@
+# Sample config for Prometheus.
+
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+      monitor: 'example'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets: ['localhost:9093']
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 15s
+    scrape_timeout: 15s
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: 
+         - 'localhost:9090'
+         - 'dum-e.deib.polimi.it:9090'
+    
+  - job_name: node
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+    static_configs:
+      - targets: ['localhost:9100']
+
+  - job_name: 'snmp_scraper_pdu'
+    scrape_interval: 2m
+    scrape_timeout: 2m
+    static_configs:
+      - targets:
+         - PDU-PS-R1-1
+         - PDU-PS-R1-2
+         #- PDU-PS-R2-1 differenziale saltato
+         - PDU-PS-R2-2
+         - PDU-PS-R3-1
+         - PDU-PS-R3-2
+         - PDU-PS-R4-1
+         - PDU-PS-R4-2
+         # firmware cotto a R5-1
+         - PDU-PS-R5-2
+         - PDU-PS-R6-1
+         - PDU-PS-R6-2
+         - PDU-PS-R7-1
+         - PDU-PS-R7-2
+         - PDU-PS-R8-1
+         - PDU-PS-R8-2
+         - PDU-PS-R9-1
+         - PDU-PS-R9-2
+    metrics_path: /snmp
+    params:
+      module: [liebert_pdu]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:9116  # The SNMP exporter's real hostname:port.
+
+  - job_name: 'snmp_scraper_pdu_cotto'
+    scrape_interval: 2m
+    scrape_timeout: 2m
+    static_configs:
+      - targets:
+        - PDU-PS-R5-1
+    metrics_path: /snmp
+    params:
+      module: [liebert_pdu_cotto]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:9116  # The SNMP exporter's real hostname:port.
+
+  - job_name: 'snmp_scraper_chiller'
+    scrape_interval: 1m
+    scrape_timeout: 1m
+    static_configs:
+      - targets:
+        - chill-PS-1
+        - chill-PS-2
+        - chill-PS-3
+    metrics_path: /snmp
+    params:
+      module: [liebert_chiller]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:9116  # The SNMP exporter's real hostname:port.
+
+  - job_name: 'snmp_scraper_chiller_gas'
+    scrape_interval: 1m
+    scrape_timeout: 1m
+    static_configs:
+      - targets:
+        - chill-P1-1 
+    metrics_path: /snmp
+    params:
+      module: [liebert_gas_chiller]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - source_labels: [__sysName__]
+        target_label: instance_sysname
+      - target_label: __address__
+        replacement: 127.0.0.1:9116  # The SNMP exporter's real hostname:port.
+
+
+  - job_name: 'snmp_scraper_ups'
+    scrape_interval: 10s
+    scrape_timeout: 10s 
+    static_configs:
+      - targets:
+        - UPS-PS
+    metrics_path: /snmp
+    params:
+      module: [liebert_ups]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:9116  # The SNMP exporter's real hostname:port.
+
+  - job_name: 'snmp_scraper_ups_lento'
+    scrape_interval: 120s
+    scrape_timeout: 120s 
+    static_configs:
+      - targets:
+        - UPS-P1
+    metrics_path: /snmp
+    params:
+      module: [liebert_ups_vecchio]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:9116  # The SNMP exporter's real hostname:port.
