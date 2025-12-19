@@ -11,7 +11,7 @@ from prometheus_client import Gauge, start_http_server
 rs485_device_ids = {"generale": 3, "gruppo_frigo": 4}
 
 # Multimetri come dizionario nome - gauge
-gauges = {
+multimetri = {
     name: Gauge(f"multimetro_{name}", f"Punto misura del multimetro {name}")
     for name in rs485_device_ids
 }
@@ -19,12 +19,12 @@ gauges = {
 # Debug print
 print("Exporter multimetri avviato, configurazione:\nMultimetro - id (rs485) - Gauge")
 for name in rs485_device_ids:
-    print(f"{name}, {rs485_device_ids[name]}, {gauges[name]}")
+    print(f"{name}, {rs485_device_ids[name]}, {multimetri[name]}")
 
 
 # modbus reader function
-def getModbusData(id_device):
-    return 1
+def getModbusData(name):
+    return random.randint(1, 10)
 
 
 if __name__ == "__main__":
@@ -32,8 +32,9 @@ if __name__ == "__main__":
     server, server_thread = start_http_server(8400)
 
     while True:
-        gauges["generale"].set_to_current_time()
-        gauges["generale"].set(random.randint(1, 10))  # Set to a given value
+        for name in multimetri:
+            multimetri[name].set_to_current_time()
+            multimetri[name].set(getModbusData(name))
 
     # Graceful exit (just to practice)
     server.shutdown()
