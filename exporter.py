@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 # Utility imports
+import random
 import sys
 
 # Import prometheus python library
@@ -27,10 +28,12 @@ def getModbusData(id_device):
 
 
 if __name__ == "__main__":
-    # Open HTTP server with port 8000
+    # Open HTTP server with port 8400
     server, server_thread = start_http_server(8400)
 
-    gauges["generale"].set(4.2)  # Set to a given value
+    while True:
+        gauges["generale"].set_to_current_time()
+        gauges["generale"].set(random.randint(1, 10))  # Set to a given value
 
     # Graceful exit (just to practice)
     server.shutdown()
