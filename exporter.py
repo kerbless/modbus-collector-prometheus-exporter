@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 
 # Utility imports
-import asyncio
-import
+import json
 import random
 import sys
 
@@ -34,7 +33,7 @@ for multimeter in rs485_device_ids:
     )
 
 # Metriche da leggere da json
-with open("modbus.json", "r") as file:
+with open("PM3200_modbus_metrics_AI.json", "r") as file:
     metrics = json.load(file)
 
 print(metrics)
@@ -91,4 +90,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    pass
