@@ -1,0 +1,3649 @@
+{
+  "device_family": "Schneider Electric PM3200 series (PM3250/PM3255)",
+  "protocol": "Modbus RTU",
+  "generated": true,
+  "metrics": [
+    {
+      "address": 3000,
+      "name": "I1",
+      "description": "Phase 1 current",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3002,
+      "name": "I2",
+      "description": "Phase 2 current",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3004,
+      "name": "I3",
+      "description": "Phase 3 current",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3006,
+      "name": "In",
+      "description": "Neutral current",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3010,
+      "name": "Iavg",
+      "description": "Average current (3-phase)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3020,
+      "name": "V12",
+      "description": "Voltage L1-L2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3022,
+      "name": "V23",
+      "description": "Voltage L2-L3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3024,
+      "name": "V31",
+      "description": "Voltage L3-L1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3026,
+      "name": "Vll_avg",
+      "description": "Average L-L voltage",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3028,
+      "name": "V1N",
+      "description": "Voltage L1-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3030,
+      "name": "V2N",
+      "description": "Voltage L2-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3032,
+      "name": "V3N",
+      "description": "Voltage L3-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3036,
+      "name": "Vln_avg",
+      "description": "Average L-N voltage",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3012,
+      "name": "Iunb_L1",
+      "description": "Current unbalance L1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3014,
+      "name": "Iunb_L2",
+      "description": "Current unbalance L2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3016,
+      "name": "Iunb_L3",
+      "description": "Current unbalance L3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3018,
+      "name": "Iunb_worst",
+      "description": "Current unbalance (worst of 3 phases)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3038,
+      "name": "Vunb_L12",
+      "description": "Voltage unbalance L1-L2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3040,
+      "name": "Vunb_L23",
+      "description": "Voltage unbalance L2-L3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3042,
+      "name": "Vunb_L31",
+      "description": "Voltage unbalance L3-L1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3044,
+      "name": "Vunb_ll_worst",
+      "description": "Voltage unbalance L-L (worst of 3 phases)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3046,
+      "name": "Vunb_L1N",
+      "description": "Voltage unbalance L1-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3048,
+      "name": "Vunb_L2N",
+      "description": "Voltage unbalance L2-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3050,
+      "name": "Vunb_L3N",
+      "description": "Voltage unbalance L3-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3052,
+      "name": "Vunb_ln_worst",
+      "description": "Voltage unbalance L-N (worst of 3 phases)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3054,
+      "name": "P1",
+      "description": "Active power Phase 1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kW",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3056,
+      "name": "P2",
+      "description": "Active power Phase 2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kW",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3058,
+      "name": "P3",
+      "description": "Active power Phase 3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kW",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3060,
+      "name": "P_tot",
+      "description": "Total active power",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kW",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3062,
+      "name": "Q1",
+      "description": "Reactive power Phase 1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVAR",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3064,
+      "name": "Q2",
+      "description": "Reactive power Phase 2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVAR",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3066,
+      "name": "Q3",
+      "description": "Reactive power Phase 3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVAR",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3068,
+      "name": "Q_tot",
+      "description": "Total reactive power",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVAR",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3070,
+      "name": "S1",
+      "description": "Apparent power Phase 1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVA",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3072,
+      "name": "S2",
+      "description": "Apparent power Phase 2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVA",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3074,
+      "name": "S3",
+      "description": "Apparent power Phase 3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVA",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3076,
+      "name": "S_tot",
+      "description": "Total apparent power",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVA",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3078,
+      "name": "PF1",
+      "description": "Power factor Phase 1 (4-quadrant format)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3080,
+      "name": "PF2",
+      "description": "Power factor Phase 2 (4-quadrant format)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3082,
+      "name": "PF3",
+      "description": "Power factor Phase 3 (4-quadrant format)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3084,
+      "name": "PF_tot",
+      "description": "Total power factor (4-quadrant format)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ],
+      "notes": "PF register format: Quadrant mapping per manual; PF value may be from -2..+2 representing four quadrants"
+    },
+    {
+      "address": 3108,
+      "name": "tanPhi",
+      "description": "Tangent phi (reactive factor), total",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3110,
+      "name": "Freq",
+      "description": "Frequency",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "Hz",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3132,
+      "name": "Temp",
+      "description": "Internal temperature",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "\u00b0C",
+      "access": "R",
+      "category": "measurements",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3204,
+      "name": "Wh_import_total",
+      "description": "Total active energy import",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3208,
+      "name": "Wh_export_total",
+      "description": "Total active energy export",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3220,
+      "name": "VARh_import_total",
+      "description": "Total reactive energy import",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "VARh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3224,
+      "name": "VARh_export_total",
+      "description": "Total reactive energy export",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "VARh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3236,
+      "name": "VAh_import_total",
+      "description": "Total apparent energy import",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "VAh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3240,
+      "name": "VAh_export_total",
+      "description": "Total apparent energy export",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "VAh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3252,
+      "name": "energy_reset_dt",
+      "description": "Energy reset date/time (partial/tariff/phase)",
+      "size_words": 4,
+      "type": "DateTime",
+      "units": "",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3256,
+      "name": "Wh_import_partial",
+      "description": "Partial active energy import",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3272,
+      "name": "VARh_import_partial",
+      "description": "Partial reactive energy import",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "VARh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3288,
+      "name": "VAh_import_partial",
+      "description": "Partial apparent energy import",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "VAh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3518,
+      "name": "Wh_import_L1",
+      "description": "Active energy import Phase 1",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3522,
+      "name": "Wh_import_L2",
+      "description": "Active energy import Phase 2",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3526,
+      "name": "Wh_import_L3",
+      "description": "Active energy import Phase 3",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3530,
+      "name": "VARh_import_L1",
+      "description": "Reactive energy import Phase 1",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "VARh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3534,
+      "name": "VARh_import_L2",
+      "description": "Reactive energy import Phase 2",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "VARh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3538,
+      "name": "VARh_import_L3",
+      "description": "Reactive energy import Phase 3",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "VARh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3542,
+      "name": "VAh_import_L1",
+      "description": "Apparent energy import Phase 1",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "VAh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3546,
+      "name": "VAh_import_L2",
+      "description": "Apparent energy import Phase 2",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "VAh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3550,
+      "name": "VAh_import_L3",
+      "description": "Apparent energy import Phase 3",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "VAh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 4196,
+      "name": "Wh_import_T1",
+      "description": "Rate 1 active energy import",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 4200,
+      "name": "Wh_import_T2",
+      "description": "Rate 2 active energy import",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 4204,
+      "name": "Wh_import_T3",
+      "description": "Rate 3 active energy import",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 4208,
+      "name": "Wh_import_T4",
+      "description": "Rate 4 active energy import",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3558,
+      "name": "WAGES_ch1",
+      "description": "Input metering accumulation Channel 01",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "Unit",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ],
+      "notes": "Label and pulse weight configured separately"
+    },
+    {
+      "address": 3562,
+      "name": "WAGES_ch2",
+      "description": "Input metering accumulation Channel 02",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "Unit",
+      "access": "R",
+      "category": "energy_int64",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45166,
+      "name": "Wh_total_f",
+      "description": "Total active energy import (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45168,
+      "name": "Wh_export_f",
+      "description": "Total active energy export (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45170,
+      "name": "VARh_import_f",
+      "description": "Total reactive energy import (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "VARh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45172,
+      "name": "VARh_export_f",
+      "description": "Total reactive energy export (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "VARh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45174,
+      "name": "VAh_import_f",
+      "description": "Total apparent energy import (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "VAh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45176,
+      "name": "VAh_export_f",
+      "description": "Total apparent energy export (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "VAh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45178,
+      "name": "Wh_partial_f",
+      "description": "Partial active energy import (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45180,
+      "name": "VARh_partial_f",
+      "description": "Partial reactive energy import (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "VARh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45182,
+      "name": "VAh_partial_f",
+      "description": "Partial apparent energy import (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "VAh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45184,
+      "name": "Wh_L1_f",
+      "description": "Active energy import Phase 1 (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45186,
+      "name": "Wh_L2_f",
+      "description": "Active energy import Phase 2 (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45188,
+      "name": "Wh_L3_f",
+      "description": "Active energy import Phase 3 (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45190,
+      "name": "VARh_L1_f",
+      "description": "Reactive energy import Phase 1 (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "VARh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45192,
+      "name": "VARh_L2_f",
+      "description": "Reactive energy import Phase 2 (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "VARh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45194,
+      "name": "VARh_L3_f",
+      "description": "Reactive energy import Phase 3 (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "VARh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45196,
+      "name": "VAh_L1_f",
+      "description": "Apparent energy import Phase 1 (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "VAh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45198,
+      "name": "VAh_L2_f",
+      "description": "Apparent energy import Phase 2 (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "VAh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45200,
+      "name": "VAh_L3_f",
+      "description": "Apparent energy import Phase 3 (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "VAh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45206,
+      "name": "Wh_T1_f",
+      "description": "Rate 1 active energy import (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45208,
+      "name": "Wh_T2_f",
+      "description": "Rate 2 active energy import (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45210,
+      "name": "Wh_T3_f",
+      "description": "Rate 3 active energy import (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45212,
+      "name": "Wh_T4_f",
+      "description": "Rate 4 active energy import (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45202,
+      "name": "WAGES_ch1_f",
+      "description": "Input metering accumulation Channel 01 (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "Unit",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45204,
+      "name": "WAGES_ch2_f",
+      "description": "Input metering accumulation Channel 02 (Float32)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "Unit",
+      "access": "R",
+      "category": "energy_float32",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3701,
+      "name": "demand_method",
+      "description": "Demand method (1=Sliding,2=Fixed)",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R/WC",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3702,
+      "name": "demand_interval_min",
+      "description": "Demand interval duration",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "Minute",
+      "access": "R/WC",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3706,
+      "name": "demand_peak_reset_dt",
+      "description": "Demand peak reset date/time",
+      "size_words": 4,
+      "type": "DateTime",
+      "units": "",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3766,
+      "name": "P_demand_present",
+      "description": "Active power present demand",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kW",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3770,
+      "name": "P_demand_peak",
+      "description": "Active power peak demand",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kW",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3772,
+      "name": "P_demand_peak_dt",
+      "description": "Active power peak demand date/time",
+      "size_words": 4,
+      "type": "DateTime",
+      "units": "",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3782,
+      "name": "Q_demand_present",
+      "description": "Reactive power present demand",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVAR",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3786,
+      "name": "Q_demand_peak",
+      "description": "Reactive power peak demand",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVAR",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3788,
+      "name": "Q_demand_peak_dt",
+      "description": "Reactive power peak demand date/time",
+      "size_words": 4,
+      "type": "DateTime",
+      "units": "",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3798,
+      "name": "S_demand_present",
+      "description": "Apparent power present demand",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVA",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3802,
+      "name": "S_demand_peak",
+      "description": "Apparent power peak demand",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVA",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3804,
+      "name": "S_demand_peak_dt",
+      "description": "Apparent power peak demand date/time",
+      "size_words": 4,
+      "type": "DateTime",
+      "units": "",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3814,
+      "name": "I1_demand_present",
+      "description": "Current I1 present demand",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3818,
+      "name": "I1_demand_peak",
+      "description": "Current I1 peak demand",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3820,
+      "name": "I1_demand_peak_dt",
+      "description": "Current I1 peak demand date/time",
+      "size_words": 4,
+      "type": "DateTime",
+      "units": "",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3830,
+      "name": "I2_demand_present",
+      "description": "Current I2 present demand",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3834,
+      "name": "I2_demand_peak",
+      "description": "Current I2 peak demand",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3836,
+      "name": "I2_demand_peak_dt",
+      "description": "Current I2 peak demand date/time",
+      "size_words": 4,
+      "type": "DateTime",
+      "units": "",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3846,
+      "name": "I3_demand_present",
+      "description": "Current I3 present demand",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3850,
+      "name": "I3_demand_peak",
+      "description": "Current I3 peak demand",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3852,
+      "name": "I3_demand_peak_dt",
+      "description": "Current I3 peak demand date/time",
+      "size_words": 4,
+      "type": "DateTime",
+      "units": "",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3862,
+      "name": "In_demand_present",
+      "description": "Neutral current present demand",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3866,
+      "name": "In_demand_peak",
+      "description": "Neutral current peak demand",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3868,
+      "name": "In_demand_peak_dt",
+      "description": "Neutral current peak demand date/time",
+      "size_words": 4,
+      "type": "DateTime",
+      "units": "",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3878,
+      "name": "Iavg_demand_present",
+      "description": "Average current present demand",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3882,
+      "name": "Iavg_demand_peak",
+      "description": "Average current peak demand",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 3884,
+      "name": "Iavg_demand_peak_dt",
+      "description": "Average current peak demand date/time",
+      "size_words": 4,
+      "type": "DateTime",
+      "units": "",
+      "access": "R",
+      "category": "demand",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45100,
+      "name": "THD_I1",
+      "description": "THD current I1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "power_quality_thd",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45102,
+      "name": "THD_I2",
+      "description": "THD current I2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "power_quality_thd",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45104,
+      "name": "THD_I3",
+      "description": "THD current I3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "power_quality_thd",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45106,
+      "name": "THD_In",
+      "description": "THD current Neutral",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "power_quality_thd",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45108,
+      "name": "THD_I_worst",
+      "description": "THD phase current (worst of 3 phases)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "power_quality_thd",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45110,
+      "name": "THD_V12",
+      "description": "THD voltage L1-L2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "power_quality_thd",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45112,
+      "name": "THD_V23",
+      "description": "THD voltage L2-L3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "power_quality_thd",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45114,
+      "name": "THD_V31",
+      "description": "THD voltage L3-L1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "power_quality_thd",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45116,
+      "name": "THD_Vll_avg",
+      "description": "THD voltage L-L average",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "power_quality_thd",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45118,
+      "name": "THD_Vll_worst",
+      "description": "THD voltage L-L worst",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "power_quality_thd",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45120,
+      "name": "THD_V1N",
+      "description": "THD voltage L1-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "power_quality_thd",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45122,
+      "name": "THD_V2N",
+      "description": "THD voltage L2-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "power_quality_thd",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45124,
+      "name": "THD_V3N",
+      "description": "THD voltage L3-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "power_quality_thd",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45126,
+      "name": "THD_Vln_avg",
+      "description": "THD voltage L-N average",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "power_quality_thd",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45128,
+      "name": "THD_Vln_worst",
+      "description": "THD voltage L-N worst",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "power_quality_thd",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27218,
+      "name": "I1_min",
+      "description": "Minimum current I1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27220,
+      "name": "I2_min",
+      "description": "Minimum current I2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27222,
+      "name": "I3_min",
+      "description": "Minimum current I3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27224,
+      "name": "In_min",
+      "description": "Minimum current Neutral",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27228,
+      "name": "Iavg_min",
+      "description": "Minimum current average",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27238,
+      "name": "V12_min",
+      "description": "Minimum voltage L1-L2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27240,
+      "name": "V23_min",
+      "description": "Minimum voltage L2-L3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27242,
+      "name": "V31_min",
+      "description": "Minimum voltage L3-L1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27244,
+      "name": "Vll_avg_min",
+      "description": "Minimum voltage L-L average",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27246,
+      "name": "V1N_min",
+      "description": "Minimum voltage L1-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27248,
+      "name": "V2N_min",
+      "description": "Minimum voltage L2-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27250,
+      "name": "V3N_min",
+      "description": "Minimum voltage L3-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27254,
+      "name": "Vln_avg_min",
+      "description": "Minimum voltage L-N average",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27272,
+      "name": "P1_min",
+      "description": "Minimum active power Phase 1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kW",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27274,
+      "name": "P2_min",
+      "description": "Minimum active power Phase 2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kW",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27276,
+      "name": "P3_min",
+      "description": "Minimum active power Phase 3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kW",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27278,
+      "name": "Ptot_min",
+      "description": "Minimum active power total",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kW",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27280,
+      "name": "Q1_min",
+      "description": "Minimum reactive power Phase 1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVAR",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27282,
+      "name": "Q2_min",
+      "description": "Minimum reactive power Phase 2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVAR",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27284,
+      "name": "Q3_min",
+      "description": "Minimum reactive power Phase 3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVAR",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27286,
+      "name": "Qtot_min",
+      "description": "Minimum reactive power total",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVAR",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27288,
+      "name": "S1_min",
+      "description": "Minimum apparent power Phase 1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVA",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27290,
+      "name": "S2_min",
+      "description": "Minimum apparent power Phase 2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVA",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27292,
+      "name": "S3_min",
+      "description": "Minimum apparent power Phase 3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVA",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27294,
+      "name": "Stot_min",
+      "description": "Minimum apparent power total",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVA",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27312,
+      "name": "PF_tot_min",
+      "description": "Minimum power factor total (4-quadrant)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27336,
+      "name": "tanPhi_min",
+      "description": "Minimum tangent phi, total",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27338,
+      "name": "THD_I1_min",
+      "description": "Minimum THD current I1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27340,
+      "name": "THD_I2_min",
+      "description": "Minimum THD current I2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27342,
+      "name": "THD_I3_min",
+      "description": "Minimum THD current I3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27344,
+      "name": "THD_In_min",
+      "description": "Minimum THD current Neutral",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27360,
+      "name": "THD_V12_min",
+      "description": "Minimum THD voltage L1-L2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27362,
+      "name": "THD_V23_min",
+      "description": "Minimum THD voltage L2-L3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27364,
+      "name": "THD_V31_min",
+      "description": "Minimum THD voltage L3-L1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27366,
+      "name": "THD_Vll_avg_min",
+      "description": "Minimum THD voltage L-L average",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27368,
+      "name": "THD_V1N_min",
+      "description": "Minimum THD voltage L1-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27370,
+      "name": "THD_V2N_min",
+      "description": "Minimum THD voltage L2-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27372,
+      "name": "THD_V3N_min",
+      "description": "Minimum THD voltage L3-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27376,
+      "name": "THD_Vln_avg_min",
+      "description": "Minimum THD voltage L-N average",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27616,
+      "name": "Freq_min",
+      "description": "Minimum frequency",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "Hz",
+      "access": "R",
+      "category": "min_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27694,
+      "name": "I1_max",
+      "description": "Maximum current I1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27696,
+      "name": "I2_max",
+      "description": "Maximum current I2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27698,
+      "name": "I3_max",
+      "description": "Maximum current I3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27700,
+      "name": "In_max",
+      "description": "Maximum current Neutral",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27704,
+      "name": "Iavg_max",
+      "description": "Maximum current average",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27714,
+      "name": "V12_max",
+      "description": "Maximum voltage L1-L2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27716,
+      "name": "V23_max",
+      "description": "Maximum voltage L2-L3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27718,
+      "name": "V31_max",
+      "description": "Maximum voltage L3-L1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27720,
+      "name": "Vll_avg_max",
+      "description": "Maximum voltage L-L average",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27722,
+      "name": "V1N_max",
+      "description": "Maximum voltage L1-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27724,
+      "name": "V2N_max",
+      "description": "Maximum voltage L2-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27726,
+      "name": "V3N_max",
+      "description": "Maximum voltage L3-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27730,
+      "name": "Vln_avg_max",
+      "description": "Maximum voltage L-N average",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "V",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27748,
+      "name": "P1_max",
+      "description": "Maximum active power Phase 1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kW",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27750,
+      "name": "P2_max",
+      "description": "Maximum active power Phase 2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kW",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27752,
+      "name": "P3_max",
+      "description": "Maximum active power Phase 3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kW",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27754,
+      "name": "Ptot_max",
+      "description": "Maximum active power total",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kW",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27756,
+      "name": "Q1_max",
+      "description": "Maximum reactive power Phase 1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVAR",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27758,
+      "name": "Q2_max",
+      "description": "Maximum reactive power Phase 2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVAR",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27760,
+      "name": "Q3_max",
+      "description": "Maximum reactive power Phase 3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVAR",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27762,
+      "name": "Qtot_max",
+      "description": "Maximum reactive power total",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVAR",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27764,
+      "name": "S1_max",
+      "description": "Maximum apparent power Phase 1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVA",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27766,
+      "name": "S2_max",
+      "description": "Maximum apparent power Phase 2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVA",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27768,
+      "name": "S3_max",
+      "description": "Maximum apparent power Phase 3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVA",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27770,
+      "name": "Stot_max",
+      "description": "Maximum apparent power total",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVA",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27788,
+      "name": "PF_tot_max",
+      "description": "Maximum power factor total (4-quadrant)",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27812,
+      "name": "tanPhi_max",
+      "description": "Maximum tangent phi, total",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27814,
+      "name": "THD_I1_max",
+      "description": "Maximum THD current I1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27816,
+      "name": "THD_I2_max",
+      "description": "Maximum THD current I2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27818,
+      "name": "THD_I3_max",
+      "description": "Maximum THD current I3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27820,
+      "name": "THD_In_max",
+      "description": "Maximum THD current Neutral",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27836,
+      "name": "THD_V12_max",
+      "description": "Maximum THD voltage L1-L2",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27838,
+      "name": "THD_V23_max",
+      "description": "Maximum THD voltage L2-L3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27840,
+      "name": "THD_V31_max",
+      "description": "Maximum THD voltage L3-L1",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27842,
+      "name": "THD_Vll_avg_max",
+      "description": "Maximum THD voltage L-L average",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27844,
+      "name": "THD_V1N_max",
+      "description": "Maximum THD voltage L1-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27846,
+      "name": "THD_V2N_max",
+      "description": "Maximum THD voltage L2-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27848,
+      "name": "THD_V3N_max",
+      "description": "Maximum THD voltage L3-N",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 27852,
+      "name": "THD_Vln_avg_max",
+      "description": "Maximum THD voltage L-N average",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "%",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 28092,
+      "name": "Freq_max",
+      "description": "Maximum frequency",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "Hz",
+      "access": "R",
+      "category": "max_values",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45130,
+      "name": "I_min_any_dt",
+      "description": "Date/time of minimum among I1,I2,I3",
+      "size_words": 4,
+      "type": "DateTime",
+      "units": "",
+      "access": "R",
+      "category": "minmax_timestamped",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45134,
+      "name": "I_min_any_value",
+      "description": "Minimum current among I1,I2,I3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "minmax_timestamped",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45136,
+      "name": "PF_tot_min_dt",
+      "description": "Date/time of minimum total PF",
+      "size_words": 4,
+      "type": "DateTime",
+      "units": "",
+      "access": "R",
+      "category": "minmax_timestamped",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45140,
+      "name": "PF_tot_min_val",
+      "description": "Minimum total PF value",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "",
+      "access": "R",
+      "category": "minmax_timestamped",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45142,
+      "name": "I_max_any_dt",
+      "description": "Date/time of maximum among I1,I2,I3",
+      "size_words": 4,
+      "type": "DateTime",
+      "units": "",
+      "access": "R",
+      "category": "minmax_timestamped",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45146,
+      "name": "I_max_any_value",
+      "description": "Maximum current among I1,I2,I3",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "minmax_timestamped",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45148,
+      "name": "P_tot_max_dt",
+      "description": "Date/time of maximum total active power",
+      "size_words": 4,
+      "type": "DateTime",
+      "units": "",
+      "access": "R",
+      "category": "minmax_timestamped",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45152,
+      "name": "P_tot_max_val",
+      "description": "Maximum total active power value",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kW",
+      "access": "R",
+      "category": "minmax_timestamped",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45154,
+      "name": "S_tot_max_dt",
+      "description": "Date/time of maximum total apparent power",
+      "size_words": 4,
+      "type": "DateTime",
+      "units": "",
+      "access": "R",
+      "category": "minmax_timestamped",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45158,
+      "name": "S_tot_max_val",
+      "description": "Maximum total apparent power value",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "kVA",
+      "access": "R",
+      "category": "minmax_timestamped",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45160,
+      "name": "PF_tot_max_dt",
+      "description": "Date/time of maximum total PF",
+      "size_words": 4,
+      "type": "DateTime",
+      "units": "",
+      "access": "R",
+      "category": "minmax_timestamped",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45164,
+      "name": "PF_tot_max_val",
+      "description": "Maximum total PF value",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "",
+      "access": "R",
+      "category": "minmax_timestamped",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 11021,
+      "name": "alarms_active_1_16",
+      "description": "Activated alarms bitmap (IDs 1-16)",
+      "size_words": 1,
+      "type": "Bitmap",
+      "units": "",
+      "access": "R",
+      "category": "alarms_status",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 11022,
+      "name": "alarms_active_17_32",
+      "description": "Activated alarms bitmap (IDs 17-32)",
+      "size_words": 1,
+      "type": "Bitmap",
+      "units": "",
+      "access": "R",
+      "category": "alarms_status",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 11023,
+      "name": "alarms_active_33_40",
+      "description": "Activated alarms bitmap (IDs 33-40)",
+      "size_words": 1,
+      "type": "Bitmap",
+      "units": "",
+      "access": "R",
+      "category": "alarms_status",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 11024,
+      "name": "alarms_active_41_56",
+      "description": "Activated alarms bitmap (IDs 41-56)",
+      "size_words": 1,
+      "type": "Bitmap",
+      "units": "",
+      "access": "R",
+      "category": "alarms_status",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 11040,
+      "name": "alarms_enabled_1_16",
+      "description": "Enabled alarms bitmap (IDs 1-16)",
+      "size_words": 1,
+      "type": "Bitmap",
+      "units": "",
+      "access": "R",
+      "category": "alarms_status",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 11041,
+      "name": "alarms_enabled_17_32",
+      "description": "Enabled alarms bitmap (IDs 17-32)",
+      "size_words": 1,
+      "type": "Bitmap",
+      "units": "",
+      "access": "R",
+      "category": "alarms_status",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 11042,
+      "name": "alarms_enabled_33_40",
+      "description": "Enabled alarms bitmap (IDs 33-40)",
+      "size_words": 1,
+      "type": "Bitmap",
+      "units": "",
+      "access": "R",
+      "category": "alarms_status",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 11043,
+      "name": "alarms_enabled_41_56",
+      "description": "Enabled alarms bitmap (IDs 41-56)",
+      "size_words": 1,
+      "type": "Bitmap",
+      "units": "",
+      "access": "R",
+      "category": "alarms_status",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 11078,
+      "name": "alarms_unacked_1_16",
+      "description": "Unacknowledged alarms bitmap (IDs 1-16)",
+      "size_words": 1,
+      "type": "Bitmap",
+      "units": "",
+      "access": "R",
+      "category": "alarms_status",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 11079,
+      "name": "alarms_unacked_17_32",
+      "description": "Unacknowledged alarms bitmap (IDs 17-32)",
+      "size_words": 1,
+      "type": "Bitmap",
+      "units": "",
+      "access": "R",
+      "category": "alarms_status",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 11080,
+      "name": "alarms_unacked_33_40",
+      "description": "Unacknowledged alarms bitmap (IDs 33-40)",
+      "size_words": 1,
+      "type": "Bitmap",
+      "units": "",
+      "access": "R",
+      "category": "alarms_status",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 11081,
+      "name": "alarms_unacked_41_56",
+      "description": "Unacknowledged alarms bitmap (IDs 41-56)",
+      "size_words": 1,
+      "type": "Bitmap",
+      "units": "",
+      "access": "R",
+      "category": "alarms_status",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45600,
+      "name": "elog_day_enable",
+      "description": "Energy log - day: enable/disable (0x0000=Disable,0xFFFF=Enable)",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45601,
+      "name": "elog_day_max_entries",
+      "description": "Energy log - day: maximum entry number",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45602,
+      "name": "elog_day_current_entries",
+      "description": "Energy log - day: current entry number",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45603,
+      "name": "elog_day_latest_id",
+      "description": "Energy log - day: latest entry ID",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45604,
+      "name": "elog_day_oldest_id",
+      "description": "Energy log - day: oldest entry ID",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45605,
+      "name": "elog_day_realtime_wh",
+      "description": "Energy log - day: real-time value of current day",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45969,
+      "name": "elog_week_enable",
+      "description": "Energy log - week: enable/disable",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45970,
+      "name": "elog_week_max_entries",
+      "description": "Energy log - week: maximum entry number",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45971,
+      "name": "elog_week_current_entries",
+      "description": "Energy log - week: current entry number",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45972,
+      "name": "elog_week_latest_id",
+      "description": "Energy log - week: latest entry ID",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45973,
+      "name": "elog_week_oldest_id",
+      "description": "Energy log - week: oldest entry ID",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 45974,
+      "name": "elog_week_realtime_wh",
+      "description": "Energy log - week: real-time value of current week",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 46138,
+      "name": "elog_month_enable",
+      "description": "Energy log - month: enable/disable",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 46139,
+      "name": "elog_month_max_entries",
+      "description": "Energy log - month: maximum entry number",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 46140,
+      "name": "elog_month_current_entries",
+      "description": "Energy log - month: current entry number",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 46141,
+      "name": "elog_month_latest_id",
+      "description": "Energy log - month: latest entry ID",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 46142,
+      "name": "elog_month_oldest_id",
+      "description": "Energy log - month: oldest entry ID",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 46143,
+      "name": "elog_month_realtime_wh",
+      "description": "Energy log - month: real-time value of current month",
+      "size_words": 4,
+      "type": "Int64",
+      "units": "Wh",
+      "access": "R",
+      "category": "energy_logs",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ]
+    },
+    {
+      "address": 4191,
+      "name": "active_tariff",
+      "description": "Active tariff (0=disabled, 1..4=rate)",
+      "size_words": 1,
+      "type": "UInt16",
+      "units": "",
+      "access": "R/WC",
+      "category": "tariff",
+      "models": [
+        "PM3250",
+        "PM3255"
+      ],
+      "notes": "Modifiable only when COM control mode is enabled"
+    },
+    {
+      "address": 8905,
+      "name": "di_status",
+      "description": "Digital input status bitmap (bit1=DI1, bit2=DI2; 0=open,1=closed)",
+      "size_words": 2,
+      "type": "Bitmap",
+      "units": "",
+      "access": "R",
+      "category": "digital_io",
+      "models": [
+        "PM3255"
+      ],
+      "notes": "DI1/DI2 control mode registers at 7274/7298"
+    },
+    {
+      "address": 9667,
+      "name": "do_status",
+      "description": "Digital output status bitmap (bit1=DO1, bit2=DO2; 0=open,1=closed)",
+      "size_words": 1,
+      "type": "Bitmap",
+      "units": "",
+      "access": "R",
+      "category": "digital_io",
+      "models": [
+        "PM3255"
+      ]
+    }
+  ]
+}
