@@ -4,6 +4,7 @@
 import json
 import random
 import sys
+from socket import timeout
 
 from prometheus_client import Gauge, start_http_server
 
@@ -64,11 +65,24 @@ for metric in metric_gauges:
 pymodbus_client = ModbusSerialClient(
     port="/tmp/ttyV1",
     baudrate=38400,
+    bytesize=8,  # how much for our multimeters?
+    stopbits=1,
+    parity=E,
+    timeout=1,  # ?
+    retries=1,  #!?
+    # trace_packet – Called with bytestream received/to be sent
+    # trace_pdu – Called with PDU received/to be sent
+    # trace_connect – Called when connected/disconnected
 )
 
 
 def getModbusData(metric, id):
-    print(pymodbus_client.read_holding_registers(1, 5, unit=1))
+    print(
+        pymodbus_client.read_holding_registers(
+            1,  # address start
+            device_id=4,
+        )
+    )
 
 
 def main():
