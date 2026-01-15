@@ -14,14 +14,14 @@ from pymodbus.server import StartSerialServer
 device1 = ModbusDeviceContext(
     di=ModbusSequentialDataBlock(1, [0] * 10),
     co=ModbusSequentialDataBlock(1, [0] * 10),
-    hr=ModbusSequentialDataBlock(1, [0] * 10),
+    hr=ModbusSequentialDataBlock(1, [0] * 5000),
     ir=ModbusSequentialDataBlock(1, [0] * 10),
 )
 
 device2 = ModbusDeviceContext(
     di=ModbusSequentialDataBlock(1, [0] * 10),
     co=ModbusSequentialDataBlock(1, [0] * 10),
-    hr=ModbusSequentialDataBlock(1, [0] * 10),
+    hr=ModbusSequentialDataBlock(1, [0] * 5000),
     ir=ModbusSequentialDataBlock(1, [0] * 10),
 )
 

@@ -9,10 +9,10 @@ from prometheus_client import Gauge, start_http_server
 from pymodbus import ModbusException
 from pymodbus.client import ModbusSerialClient
 
-# Indirizzi modbus dei multimetri
+# Multimeter modbus addresses (TODO move to json?)
 rs485_device_ids = {"generale": 3, "gruppo_frigo": 4}
 
-# Metriche da leggere da json
+# Metrics from JSON
 with open("./PM3000_modbus_metrics.json", "r") as file:
     PM3000_modbus_metrics = json.load(file)
 
@@ -20,35 +20,28 @@ metrics = PM3000_modbus_metrics["metrics"]
 for metric in metrics:
     print(metric["address"])
 
-# Labels di cui avremo delle istanze (usare entrambe non duplica i dati, le coppie sono uniche)
+# Labels of which we will have instances (using both does not duplicate data as each couple is unique)
 labels = ["multimeter", "id"]
 
-# Definizione metriche prometheus, seguendo le best practices.
-# (nome, descrizione, labels)
-
+# Prometheus metrics definition, following best practices.
+# tip: Gauge(name, description, labels)
 metric_gauges = {
     metric["name"]: Gauge(f"modbus_{metric['name']}", metric["description"], labels)
     for metric in metrics
 }
 
-# Inizializzazione labels (TODO: check how important it is to do this, might be able to skip it)
+# Label initialization (TODO: I think this can be skipped)
 for gauge in metric_gauges.values():
     for name, id in rs485_device_ids.items():
         gauge.labels(name, id)
 
-# Stampa d'inizio
-print("Exporter multimetri avviato, inizio raccolta per le seguenti metriche:")
-for metric in metric_gauges:
-    print(metric)
-
-# PYMODBUS CLIENT (TODO move to module?)
+# PYMODBUS CLIENT
 # https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.ModbusSerialClient
 
-# Read https://pymodbus.readthedocs.io/en/latest/source/client.html#client-performance
-# We are using the syncronous function as in our case
-# the bottleneck is on the transmission so we don't care about
-# asyncronous performance right now
-# Read https://pymodbus.readthedocs.io/en/latest/source/client.html#serial-rs-485
+# Regarding performance:
+# we are using the syncronous version of the client as in our case the transmission is the bottleneck so we don't care about the performance gain with the asyncronous client.
+# https://pymodbus.readthedocs.io/en/latest/source/client.html#client-performance
+# https://pymodbus.readthedocs.io/en/latest/source/client.html#serial-rs-485
 
 pymodbus_client = ModbusSerialClient(
     port="/tmp/ttyV1",
@@ -63,6 +56,11 @@ pymodbus_client = ModbusSerialClient(
     # trace_connect – Called when connected/disconnected
 )
 
+# Starting print.
+print("Exporter multimetri avviato, inizio raccolta per le seguenti metriche:")
+for metric in metric_gauges:
+    print(metric)
+
 
 def main():
     # connect to pymodbus client
@@ -76,8 +74,8 @@ def main():
             for name, id in rs485_device_ids.items():
                 try:
                     reading = pymodbus_client.read_holding_registers(
-                        address=1,
-                        count=2,
+                        address=metric["address"],
+                        count=2,  # ?!
                         device_id=id,
                     )
                 except ModbusException as exc:  # pragma: no cover
