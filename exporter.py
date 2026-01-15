@@ -15,7 +15,7 @@ from pymodbus.client import ModbusSerialClient
 rs485_device_ids = {"generale": 3, "gruppo_frigo": 4}
 
 # Metriche da leggere da json
-with open("PM3200_modbus_metrics_AI.json", "r") as file:
+with open("PM3200_modbus_metrics.json", "r") as file:
     metrics = json.load(file)
 
 print(metrics)
