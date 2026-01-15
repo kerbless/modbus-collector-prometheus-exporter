@@ -14,21 +14,6 @@ from pymodbus.client import ModbusSerialClient
 # Indirizzi modbus dei multimetri
 rs485_device_ids = {"generale": 3, "gruppo_frigo": 4}
 
-# Creazione client pymodbus per ciascun multimetro
-pymodbus_clients = {}
-for multimeter in rs485_device_ids:
-    # https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.ModbusSerialClient
-    pymodbus_clients[multimeter] = ModbusClient.ModbusSerialClient(
-        "/dev/ttyUSB0",  # port
-        # timeout=10,
-        # retries=3,
-        baudrate=38400,
-        bytesize=8,
-        parity="E",  # parity: even
-        stopbits=1,
-        # handle_local_echo=False,
-    )
-
 # Metriche da leggere da json
 with open("PM3200_modbus_metrics_AI.json", "r") as file:
     metrics = json.load(file)
@@ -54,7 +39,8 @@ print("Exporter multimetri avviato, inizio raccolta per le seguenti metriche:")
 for metric in metric_gauges:
     print(metric)
 
-# pymodbus client
+# PYMODBUS CLIENT (TODO move to module?)
+# https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.ModbusSerialClient
 
 # Read https://pymodbus.readthedocs.io/en/latest/source/client.html#client-performance
 # We are using the syncronous function as in our case
@@ -67,7 +53,7 @@ pymodbus_client = ModbusSerialClient(
     baudrate=38400,
     bytesize=8,  # how much for our multimeters?
     stopbits=1,
-    parity=E,
+    parity="E",
     timeout=1,  # ?
     retries=1,  #!?
     # trace_packet – Called with bytestream received/to be sent
@@ -77,12 +63,13 @@ pymodbus_client = ModbusSerialClient(
 
 
 def getModbusData(metric, id):
-    print(
-        pymodbus_client.read_holding_registers(
-            1,  # address start
-            device_id=4,
+    for id in rs485_device_ids.values():
+        print(
+            pymodbus_client.read_holding_registers(
+                1,  # address start
+                device_id=id,
+            )
         )
-    )
 
 
 def main():
