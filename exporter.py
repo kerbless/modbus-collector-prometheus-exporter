@@ -60,7 +60,7 @@ for metric in metric_gauges:
 
 
 # TODO: modbus reader function (use library?)
-async def getModbusData(metric, id):
+def getModbusData(metric, id):
     return random.randint(1, 10)
 
 
@@ -71,8 +71,9 @@ async def getModbusData(metric, id):
 # Read https://pymodbus.readthedocs.io/en/latest/source/client.html#serial-rs-485
 
 
-async def main():
-    # Open HTTP server with port 8400
+def main():
+
+    # Open HTTP server with port 8400 for prometheus to scrape
     server, server_thread = start_http_server(8400)
 
     while True:
