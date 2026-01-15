@@ -2,31 +2,33 @@
 
 # Utility imports
 import json
-import random
 import sys
-from socket import timeout
-
-from prometheus_client import Gauge, start_http_server
 
 # Import modbus and prometheus libraries
+from prometheus_client import Gauge, start_http_server
+from pymodbus import ModbusException
 from pymodbus.client import ModbusSerialClient
 
 # Indirizzi modbus dei multimetri
 rs485_device_ids = {"generale": 3, "gruppo_frigo": 4}
 
 # Metriche da leggere da json
-with open("PM3200_modbus_metrics.json", "r") as file:
-    metrics = json.load(file)
+with open("./PM3000_modbus_metrics.json", "r") as file:
+    PM3000_modbus_metrics = json.load(file)
 
-print(metrics)
+metrics = PM3000_modbus_metrics["metrics"]
+for metric in metrics:
+    print(metric["address"])
 
 # Labels di cui avremo delle istanze (usare entrambe non duplica i dati, le coppie sono uniche)
 labels = ["multimeter", "id"]
 
 # Definizione metriche prometheus, seguendo le best practices.
 # (nome, descrizione, labels)
+
 metric_gauges = {
-    metric: Gauge(f"modbus_{metric}", metrics[metric], labels) for metric in metrics
+    metric["name"]: Gauge(f"modbus_{metric['name']}", metric["description"], labels)
+    for metric in metrics
 }
 
 # Inizializzazione labels (TODO: check how important it is to do this, might be able to skip it)
@@ -62,16 +64,6 @@ pymodbus_client = ModbusSerialClient(
 )
 
 
-def getModbusData(metric, id):
-    for id in rs485_device_ids.values():
-        print(
-            pymodbus_client.read_holding_registers(
-                1,  # address start
-                device_id=id,
-            )
-        )
-
-
 def main():
     # connect to pymodbus client
     pymodbus_client.connect()
@@ -80,12 +72,26 @@ def main():
     server, server_thread = start_http_server(8400)
 
     while True:
+        print("hello")
         for metric, gauge in metric_gauges.items():
             for name, id in rs485_device_ids.items():
-                updateValue = client.read_holding_registers(248, 4, unit=1)
-
+                try:
+                    print("hello")
+                    reading = pymodbus_client.read_holding_registers(
+                        1,  # address start
+                        count=10,
+                        device_id=id,
+                    )
+                except ModbusException as exc:  # pragma: no cover
+                    print(f"Received ModbusException({exc}) from library")
+                    pymodbus_client.close()
+                    return
+                print(reading)
+                value_int32 = pymodbus_client.convert_from_registers(
+                    reading.registers, data_type=pymodbus_client.DATATYPE.INT32
+                )
                 # gauge.labels(name, id).set_to_current_time() # TODO: confirm that this is done automatically when .set
-                gauge.labels(name, id).set(updateValue)
+                gauge.labels(name, id).set(0)
 
     # Graceful exit (just to practice)
     server.shutdown()
@@ -95,4 +101,4 @@ def main():
 
 
 if __name__ == "__main__":
-    pass
+    main()

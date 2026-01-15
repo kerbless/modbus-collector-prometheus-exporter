@@ -1,0 +1,51 @@
+{
+  "device_family": "Schneider Electric PM3200 series (PM3250/PM3255)",
+  "protocol": "Modbus RTU",
+  "generated": true,
+  "metrics": [
+    {
+      "address": 3000,
+      "name": "I1",
+      "description": "Phase 1 current",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "measurements",
+      "models": ["PM3250", "PM3255"]
+    },
+    {
+      "address": 3002,
+      "name": "I2",
+      "description": "Phase 2 current",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "measurements",
+      "models": ["PM3250", "PM3255"]
+    },
+    {
+      "address": 3004,
+      "name": "I3",
+      "description": "Phase 3 current",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "measurements",
+      "models": ["PM3250", "PM3255"]
+    },
+    {
+      "address": 3006,
+      "name": "In",
+      "description": "Neutral current",
+      "size_words": 2,
+      "type": "Float32",
+      "units": "A",
+      "access": "R",
+      "category": "measurements",
+      "models": ["PM3250", "PM3255"]
+    }
+  ]
+}
