@@ -72,26 +72,26 @@ def main():
     server, server_thread = start_http_server(8400)
 
     while True:
-        print("hello")
         for metric, gauge in metric_gauges.items():
             for name, id in rs485_device_ids.items():
                 try:
-                    print("hello")
                     reading = pymodbus_client.read_holding_registers(
-                        1,  # address start
-                        count=10,
+                        address=1,
+                        count=2,
                         device_id=id,
                     )
                 except ModbusException as exc:  # pragma: no cover
                     print(f"Received ModbusException({exc}) from library")
                     pymodbus_client.close()
                     return
-                print(reading)
                 value_int32 = pymodbus_client.convert_from_registers(
-                    reading.registers, data_type=pymodbus_client.DATATYPE.INT32
+                    reading.registers,
+                    data_type=pymodbus_client.DATATYPE.INT32,
+                    # word_order="big",
                 )
+                print(value_int32)
                 # gauge.labels(name, id).set_to_current_time() # TODO: confirm that this is done automatically when .set
-                gauge.labels(name, id).set(0)
+                gauge.labels(name, id).set(0)  # TODO
 
     # Graceful exit (just to practice)
     server.shutdown()

@@ -2,7 +2,6 @@
 # To understand this browse the code examples, especially from https://github.com/pymodbus-dev/pymodbus/blob/dev/examples/server_sync.py
 # Note that this is using pymodbus 3.x
 
-from pymodbus import FramerType
 from pymodbus.datastore import (
     ModbusDeviceContext,
     ModbusSequentialDataBlock,
