@@ -3,6 +3,7 @@
 # Utility imports
 import json
 import sys
+import time
 
 # Import modbus and prometheus libraries
 from prometheus_client import Gauge, start_http_server
@@ -21,7 +22,7 @@ for metric in metrics:
     print(metric["address"])
 
 # Labels of which we will have instances (using both does not duplicate data as each couple is unique)
-labels = ["multimeter", "id"]
+labels = ["multimeter", "unit_id"]
 
 # Prometheus metrics definition, following best practices.
 # tip: Gauge(name, description, labels)
@@ -70,26 +71,35 @@ def main():
     server, server_thread = start_http_server(8400)
 
     while True:
-        for metric, gauge in metric_gauges.items():
+        for metric in metrics:
             for name, id in rs485_device_ids.items():
                 try:
                     reading = pymodbus_client.read_holding_registers(
-                        address=metric["address"],
+                        address=int(metric["address"]),
                         count=2,  # ?!
                         device_id=id,
                     )
+
                 except ModbusException as exc:  # pragma: no cover
                     print(f"Received ModbusException({exc}) from library")
                     pymodbus_client.close()
                     return
+
                 value_int32 = pymodbus_client.convert_from_registers(
                     reading.registers,
                     data_type=pymodbus_client.DATATYPE.INT32,
-                    # word_order="big",
+                    word_order="big",
                 )
-                print(value_int32)
+
+                print(
+                    f"reading {metric['name']} from device {name} got {value_int32} {type(value_int32)}"
+                )
                 # gauge.labels(name, id).set_to_current_time() # TODO: confirm that this is done automatically when .set
-                gauge.labels(name, id).set(0)  # TODO
+                metric_gauges[metric["name"]].labels(name, id).set(
+                    value_int32
+                )  # TODO: WHY TYPE??
+        time.sleep(1)
+        print("\n")
 
     # Graceful exit (just to practice)
     server.shutdown()
