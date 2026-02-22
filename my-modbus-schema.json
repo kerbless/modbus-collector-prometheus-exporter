@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://forgejo.kerbless.me/PoliMi/proginginf/src/branch/main/my-modbus-schema.json",
+  "title": "Modbus Device Descriptions",
+  "description": "A schema to describe modbus devices and their registers.",
+  "type": "object",
