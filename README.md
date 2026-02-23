@@ -13,5 +13,3 @@ Sviluppo di un prometheus exporter in python (usando la [libreria ufficiale di p
 `uv run pymodbus_server.py`
 
 `uv run exporter.py`
-
-and open localhost:8400
