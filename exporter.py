@@ -14,6 +14,9 @@ from prometheus_client import Gauge, start_http_server
 from pymodbus import ModbusException
 from pymodbus.client import ModbusSerialClient
 
+# Configuration (Move to file?)
+reader = {"model": "PM3250", "rs485_id": 3}
+
 # Import devices information
 devices_dir = "./devices/"
 devices = {}
