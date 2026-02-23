@@ -14,9 +14,6 @@ from prometheus_client import Gauge, start_http_server
 from pymodbus import ModbusException
 from pymodbus.client import ModbusSerialClient
 
-# Multimeter modbus addresses (TODO moving to yaml)
-# rs485_device_ids = {"generale": 3, "gruppo_frigo": 4}
-
 # Import devices information
 devices_dir = "./devices/"
 devices = {}
@@ -27,17 +24,20 @@ for filepath in glob.glob(os.path.join(devices_dir, "*.yaml")):
 
 # BRIDGE device information to prometheus metric definition following best practices.
 
+# Multimeter modbus addresses (TODO move to config file?)
+rs485_device_ids = {"generale": 3, "gruppo_frigo": 4}
+
 # Labels of which we will have instances (using both does not duplicate data as each couple is unique)
 labels = ["multimeter", "unit_id"]
-Gauge(f"modbus_{device}", description, labels)
 
-gauges = {}
-for device, device_data in devices.items():
-
-# Metrics definition - tip: Gauge(name, description, labels)
-metric_gauges = {
-    metric["name"]: Gauge(f"modbus_{metric['name']}", metric["description"], labels) for metric in metrics
-}
+for device in devices:
+    # Dictionary containing all gauges (one per register) for the given device - tip: Gauge(name, description, labels)
+    gauges = {
+        register["name"]: Gauge(
+            f"modbus_{register['name']}", register["display_name"], labels
+        )
+        for register in device["registers"]
+    }
 
 # Label initialization (TODO: can be skipped right?)
 # for gauge in metric_gauges.values():
