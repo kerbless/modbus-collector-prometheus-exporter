@@ -1,40 +1,48 @@
 #!/usr/bin/python3
 
 # Utility imports
+import glob
 import json
+import os
 import sys
 import time
+
+import yaml  # requires pyyaml
 
 # Import modbus and prometheus libraries
 from prometheus_client import Gauge, start_http_server
 from pymodbus import ModbusException
 from pymodbus.client import ModbusSerialClient
 
-# Multimeter modbus addresses (TODO move to json?)
-rs485_device_ids = {"generale": 3, "gruppo_frigo": 4}
+# Multimeter modbus addresses (TODO moving to yaml)
+# rs485_device_ids = {"generale": 3, "gruppo_frigo": 4}
 
-# Metrics from JSON
-with open("./PM3000_modbus_metrics.json", "r") as file:
-    PM3000_modbus_metrics = json.load(file)
+# Import devices information
+devices_dir = "./devices/"
+devices = {}
+for filepath in glob.glob(os.path.join(devices_dir, "*.yaml")):
+    with open(filepath, "r") as file:
+        filename = os.path.splitext(os.path.basename(filepath))[0]
+        devices[filename] = yaml.safe_load(file)
 
-metrics = PM3000_modbus_metrics["metrics"]
-for metric in metrics:
-    print(metric["address"])
+# BRIDGE device information to prometheus metric definition following best practices.
 
 # Labels of which we will have instances (using both does not duplicate data as each couple is unique)
 labels = ["multimeter", "unit_id"]
+Gauge(f"modbus_{device}", description, labels)
 
-# Prometheus metrics definition, following best practices.
-# tip: Gauge(name, description, labels)
+gauges = {}
+for device, device_data in devices.items():
+
+# Metrics definition - tip: Gauge(name, description, labels)
 metric_gauges = {
-    metric["name"]: Gauge(f"modbus_{metric['name']}", metric["description"], labels)
-    for metric in metrics
+    metric["name"]: Gauge(f"modbus_{metric['name']}", metric["description"], labels) for metric in metrics
 }
 
-# Label initialization (TODO: I think this can be skipped)
-for gauge in metric_gauges.values():
-    for name, id in rs485_device_ids.items():
-        gauge.labels(name, id)
+# Label initialization (TODO: can be skipped right?)
+# for gauge in metric_gauges.values():
+#     for name, id in rs485_device_ids.items():
+#         gauge.labels(name, id)
 
 # PYMODBUS CLIENT
 # https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.ModbusSerialClient

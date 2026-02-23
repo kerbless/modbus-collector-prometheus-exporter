@@ -1,8 +1,8 @@
 version: "0.3.0"
 
 device:
-  id: schneider_electric_pm3250
-  manufacturer: Schneider Electic
+  id: schneider_electric_pm3250_copy
+  manufacturer: Schneider Electic Copys
   model: PM3250
   description: Three-phase power meter
   protocol: modbus_rtu
