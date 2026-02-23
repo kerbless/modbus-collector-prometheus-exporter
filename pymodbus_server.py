@@ -38,7 +38,7 @@ context = ModbusServerContext(devices=devices, single=False)
 if __name__ == "__main__":
     StartSerialServer(
         context=context,
-        port="/tmp/ttyV0",  # for testing: socat -d -d PTY,raw,echo=0,link=/tmp/ttyV0 PTY,raw,echo=0,link=/tmp/ttyV1
+        port="/tmp/ttyV0",  # test with: socat -d -d PTY,raw,echo=0,link=/tmp/ttyV0 PTY,raw,echo=0,link=/tmp/ttyV1
         baudrate=38400,
         bytesize=8,  # ?
         parity="E",  # even
