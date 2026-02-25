@@ -26,6 +26,7 @@ device2 = ModbusDeviceContext(
 )
 
 device1.setValues(3, 3001, [12])
+device1.setValues(4, 3001, [12])
 
 # Map unit IDs to contexts
 devices = {
