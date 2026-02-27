@@ -10,8 +10,57 @@ device:
 registers:
   "3000":
     display_name: "I1: phase 1 current"
-    name: phase1_current
+    name: phase1_current_in
     type: float32
     unit: A
     register_type: input # ?
     length: 2 # this is inferred from float32
+  "3002":
+    display_name: "I2: phase 2 current"
+    name: phase2_current_in
+    type: float32
+    unit: A
+    register_type: input
+    length: 2
+  "3004":
+    display_name: "I3: phase 3 current"
+    name: phase3_current_in
+    type: float32
+    unit: A
+    register_type: input
+    length: 2
+  "3006":
+    display_name: "In: Neutral current"
+    name: neutra_current_in
+    type: float32
+    unit: A
+    register_type: input
+    length: 2
+  "3010":
+    display_name: "Current Avg"
+    name: current_avg
+    type: float32
+    unit: A
+    register_type: input
+    length: 2
+  "3020":
+    display_name: "Voltage L1-L2"
+    name: voltage_l1_l2
+    type: float32
+    unit: A
+    register_type: input
+    length: 2
+  "3022":
+    display_name: "Voltage L2-L3"
+    name: voltage_l2_l3
+    type: float32
+    unit: A
+    register_type: input
+    length: 2
+  "3024":
+    display_name: "Voltage L3-L1"
+    name: voltage_l3_l1
+    type: float32
+    unit: A
+    register_type: input
+    length: 2
