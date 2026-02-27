@@ -1,11 +1,7 @@
 #!/usr/bin/python3
 
-import glob
-import json
-import os
 import sys
 import time
-from pdb import pm
 
 import yaml  # requires pyyaml
 from prometheus_client import Gauge, start_http_server  # prometheus library
