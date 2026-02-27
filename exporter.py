@@ -83,37 +83,68 @@ def main():
     # Continuously reading/exporting each register metrics
     while True:
         for device in devices:
-            for register, register_profile in device["registers"].items():
-                try:
-                    # reading register (TODO: bulk read)
-                    reading = pymodbus_client.read_holding_registers(
-                        address=int(register),
-                        count=register_profile["length"],  # ?!
-                        device_id=device["rs485_id"],
-                    )
+            registers = device["registers"]
+            register_keys = sorted(
+                registers.keys()
+            )  # ordered registers that will be read
 
-                except ModbusException as exc:
-                    print(f"Received ModbusException({exc}) from library")
-                    pymodbus_client.close()
-                    return
+            reg_index = 0  # index of register address to read
+            next_reg_index = 0  # index to start next round
+            num_reg = 1  # number of register will be read
+            tot_len = registers[register_keys[reg_index]]["length"]  # total lenght
 
-                # convert raw value to type (TODO: make dynamic with profile)
-                value = pymodbus_client.convert_from_registers(
-                    reading.registers,
-                    data_type=pymodbus_client.DATATYPE.INT32,  # here I need to map yaml data to pymodbus
-                    word_order="big",
-                )
-
+            for i in range(
+                reg_index, len(register_keys)
+            ):  # for each subsequent register starting from current one
                 print(
-                    f"reading {register_profile['name']} from device {device['name']} got {value} {type(value)}"
+                    f"testing {(registers[register_keys[i]]['length'] + int(register_keys[i]))} == {int(register_keys[i + 1])}"
+                )
+                if (
+                    # i.e. if CONTIGUOUS
+                    # if the current register address + its lenght
+                    # == next register
+                    (registers[register_keys[i]]["length"] + int(register_keys[i]))
+                    == int(register_keys[i + 1])
+                ):
+                    tot_len += registers[register_keys[i + 1]]["length"]
+                    num_reg = num_reg + 1
+                else:
+                    next_reg_index = i + 1
+                    break
+            print(
+                f"reading register {register_keys[reg_index]} for {num_reg} registers with a total lenght of {tot_len}, will continue from {register_keys[next_reg_index]}\n"
+            )
+
+            # bulk read
+            try:
+                reading = pymodbus_client.read_holding_registers(
+                    address=int(register[reg_index]),
+                    count=tot_len,
+                    device_id=device["rs485_id"],
                 )
 
-                # gauge.labels(name, id).set_to_current_time() # TODO: confirm that this is done automatically when .set
+            except ModbusException as exc:
+                print(f"Received ModbusException({exc}) from library")
+                pymodbus_client.close()
+                return
 
-                # labels: "modbus_device", "modbus_rtu_id" (TODO: make dynamic)
-                gauges[device["name"]].labels(device["name"], device["rs485_id"]).set(
-                    value
-                )
+            print(reading)
+            # update
+            # convert raw value to type (TODO: make dynamic with profile)
+            value = pymodbus_client.convert_from_registers(
+                reading.registers,
+                data_type=pymodbus_client.DATATYPE.INT32,  # here I need to map yaml data to pymodbus
+                word_order="big",
+            )
+
+            print(
+                f"reading {register_profile['name']} from device {device['name']} got {value} {type(value)}"
+            )
+
+            # gauge.labels(name, id).set_to_current_time() # TODO: confirm that this is done automatically when .set
+
+            # labels: "modbus_device", "modbus_rtu_id" (TODO: make dynamic)
+            gauges[device["name"]].labels(device["name"], device["rs485_id"]).set(value)
         time.sleep(1)
         print("\n")
 
