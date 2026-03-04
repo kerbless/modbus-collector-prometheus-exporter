@@ -28,6 +28,11 @@ devices = [
     },
 ]
 
+# OpenModbusSpecs to Pymodbus unit mapping (TODO: move to file)
+# https://pymodbus.readthedocs.io/en/latest/source/simulator/datamodel.html
+unit_mapping = {""}
+# will use to call the pymodbus function with something like https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
+
 # Dictionary containing all gauges (one per register) for the given device used to export the metrics
 # tip: Gauge(name, description, labels)
 
