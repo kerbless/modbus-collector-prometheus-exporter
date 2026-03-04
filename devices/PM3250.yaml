@@ -8,7 +8,7 @@ device:
   protocol: modbus_rtu
 
 registers:
-  ### Flex log ??
+  ##### Flex log and command interface ??
 
   ### System
   "30":
@@ -180,10 +180,52 @@ registers:
     unit: V
     register_type: holding
     length: 2
-  "3028":
+  "3026":
     display_name: "Voltage L-L-Avg"
     name: voltage_l_l_avg
     type: float32
     unit: V
     register_type: holding
     length: 2
+  "3028":
+    display_name: "Voltage L1-N"
+    name: voltage_l1_n
+    type: float32
+    unit: V
+    register_type: holding
+    length: 2
+  "3030":
+    display_name: "Voltage L2-N"
+    name: voltage_l2_n
+    type: float32
+    unit: V
+    register_type: holding
+    length: 2
+  "3032":
+    display_name: "Voltage L3-N"
+    name: voltage_l3_n
+    type: float32
+    unit: V
+    register_type: holding
+    length: 2
+  "3036":
+    display_name: "Voltage L-N Avg"
+    name: voltage_l_n_avg
+    type: float32
+    unit: V
+    register_type: holding
+    length: 2
+
+  # Power
+
+  ### Demand
+  ### MinMax Reset
+  ### Minimum Values
+  ### Maximum Values
+  ### MinMax with Time Stamp
+  ### Power Quality
+  ### Alarms
+  ### Energy Log
+  ### Flex log record information
+  ### Flex log configuration information
+  ### Read Device Identification
