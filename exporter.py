@@ -1,40 +1,51 @@
 #!/usr/bin/python3
 
-# Utility imports
-import json
 import sys
 import time
 
-# Import modbus and prometheus libraries
-from prometheus_client import Gauge, start_http_server
-from pymodbus import ModbusException
-from pymodbus.client import ModbusSerialClient
+import yaml  # requires pyyaml
+from prometheus_client import Gauge, start_http_server  # prometheus library
+from pymodbus import ModbusException  # pymodbus exceptions
+from pymodbus.client import ModbusSerialClient  # pymodbus client rtu (over rs485)
 
-# Multimeter modbus addresses (TODO move to json?)
-rs485_device_ids = {"generale": 3, "gruppo_frigo": 4}
+# Import device profile
+with open("./devices/PM3250.yaml", "r") as file:
+    pm3250 = yaml.safe_load(file)
 
-# Metrics from JSON
-with open("./PM3000_modbus_metrics.json", "r") as file:
-    PM3000_modbus_metrics = json.load(file)
+# Defining rtu devices that will be collected and exported
+devices = [
+    {
+        "name": "modbus_power_meter_general",
+        "description": "multimetro generale",
+        "registers": pm3250["registers"],
+        "rs485_id": 3,
+    },
+    {
+        "name": "modbus_power_meter_cooling",
+        "description": "multimetro gruppo frigo",
+        "registers": pm3250["registers"],  # no dup data right?
+        "rs485_id": 4,
+    },
+]
 
-metrics = PM3000_modbus_metrics["metrics"]
-for metric in metrics:
-    print(metric["address"])
-
-# Labels of which we will have instances (using both does not duplicate data as each couple is unique)
-labels = ["multimeter", "unit_id"]
-
-# Prometheus metrics definition, following best practices.
+# Dictionary containing all gauges (one per register) for the given device used to export the metrics
 # tip: Gauge(name, description, labels)
-metric_gauges = {
-    metric["name"]: Gauge(f"modbus_{metric['name']}", metric["description"], labels)
-    for metric in metrics
+
+gauges = {
+    device["name"]: Gauge(
+        device["name"],
+        device["description"],
+        ["modbus_device", "modbus_rs485_id"],  # TODO: make dynamic labels
+    )
+    for device in devices
 }
 
-# Label initialization (TODO: I think this can be skipped)
-for gauge in metric_gauges.values():
-    for name, id in rs485_device_ids.items():
-        gauge.labels(name, id)
+# Starting print.
+print("Exporter multimetri avviato, inizio raccolta per le seguenti metriche:")
+for device in devices:
+    for register, register_profile in device["registers"].items():
+        print(f"Device {device['name']}: {register_profile['name']} (addr: {register})")
+
 
 # PYMODBUS CLIENT
 # https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.ModbusSerialClient
@@ -57,11 +68,6 @@ pymodbus_client = ModbusSerialClient(
     # trace_connect – Called when connected/disconnected
 )
 
-# Starting print.
-print("Exporter multimetri avviato, inizio raccolta per le seguenti metriche:")
-for metric in metric_gauges:
-    print(metric)
-
 
 def main():
     # connect to pymodbus client
@@ -70,34 +76,74 @@ def main():
     # Open HTTP server with port 8400 for prometheus to scrape
     server, server_thread = start_http_server(8400)
 
+    # Continuously reading/exporting each register metrics
     while True:
-        for metric in metrics:
-            for name, id in rs485_device_ids.items():
+        for device in devices:
+            registers = device["registers"]
+            register_keys = sorted(
+                registers.keys()
+            )  # ordered registers that will be read
+
+            next_reg_index = 0
+            while next_reg_index < len(registers):  # TODO: test
+                reg_index = next_reg_index
+                num_reg = 1  # number of register will be read
+                tot_len = registers[register_keys[reg_index]]["length"]  # total lenght
+
+                for i in range(
+                    reg_index, len(register_keys)
+                ):  # for each subsequent register starting from current one
+                    print(
+                        f"testing {(registers[register_keys[i]]['length'] + int(register_keys[i]))} == {int(register_keys[i + 1])}"
+                    )
+                    if (
+                        # i.e. if CONTIGUOUS
+                        # if the current register address + its lenght
+                        # == next register
+                        (registers[register_keys[i]]["length"] + int(register_keys[i]))
+                        == int(register_keys[i + 1])
+                    ):
+                        tot_len += registers[register_keys[i + 1]]["length"]
+                        num_reg = num_reg + 1
+                    else:
+                        next_reg_index = i + 1
+                        break
+                print(
+                    f"reading register {register_keys[reg_index]} for {num_reg} registers with a total lenght of {tot_len}, will continue from {register_keys[next_reg_index]}\n"
+                )
+
+                # bulk read
                 try:
                     reading = pymodbus_client.read_holding_registers(
-                        address=int(metric["address"]),
-                        count=2,  # ?!
-                        device_id=id,
+                        address=int(register[reg_index]),
+                        count=tot_len,
+                        device_id=device["rs485_id"],
                     )
 
-                except ModbusException as exc:  # pragma: no cover
+                except ModbusException as exc:
                     print(f"Received ModbusException({exc}) from library")
                     pymodbus_client.close()
                     return
 
-                value_int32 = pymodbus_client.convert_from_registers(
-                    reading.registers,
-                    data_type=pymodbus_client.DATATYPE.INT32,
-                    word_order="big",
-                )
+                print(reading)
+                # update
+                # convert raw value to type (TODO: make dynamic with profile)
+                # value = pymodbus_client.convert_from_registers(
+                #     reading.registers,
+                #     data_type=pymodbus_client.DATATYPE.INT32,  # here I need to map yaml data to pymodbus
+                #     word_order="big",
+                # )
 
-                print(
-                    f"reading {metric['name']} from device {name} got {value_int32} {type(value_int32)}"
-                )
+                # print(
+                #     f"reading {register_profile['name']} from device {device['name']} got {value} {type(value)}"
+                # )
+
                 # gauge.labels(name, id).set_to_current_time() # TODO: confirm that this is done automatically when .set
-                metric_gauges[metric["name"]].labels(name, id).set(
-                    value_int32
-                )  # TODO: WHY TYPE??
+
+                # labels: "modbus_device", "modbus_rtu_id" (TODO: make dynamic)
+                # gauges[device["name"]].labels(device["name"], device["rs485_id"]).set(
+                #     value
+                # )
         time.sleep(1)
         print("\n")
 

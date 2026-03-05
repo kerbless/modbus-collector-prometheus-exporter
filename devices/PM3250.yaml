@@ -1,0 +1,231 @@
+version: "0.3.0"
+
+device:
+  id: schneider_electric_pm3250
+  manufacturer: Schneider Electic
+  model: PM3250
+  description: Three-phase power meter
+  protocol: modbus_rtu
+
+registers:
+  ##### Flex log and command interface ??
+
+  ### System
+  "30":
+    display_name: "Meter Name"
+    name: meter_name
+    type: string # UTF8?
+    unit: ""
+    register_type: holding
+    length: 20
+  "50":
+    display_name: "Meter Model"
+    name: meter_model
+    type: string
+    unit: ""
+    register_type: holding
+    lenght: 20
+  "70":
+    display_name: "Manufacturer"
+    name: manufacturer
+    type: string
+    unit: ""
+    register_type: holding
+    lenght: 20
+  "130":
+    display_name: "Serial Number"
+    name: serial_number
+    type: uint32
+    unit: ""
+    register_type: holding
+    lenght: 2
+  "132":
+    display_name: "Date of Manufacture"
+    name: manufacture_date
+    type: string # Date/Time
+    unit: ""
+    register_type: holding
+    lenght: 4
+  "136":
+    display_name: "Hardware Revision"
+    name: hardware_revision
+    type: string # UTF8
+    unit: ""
+    register_type: holding
+    lenght: 5
+  "1637":
+    display_name: "Present Firmware Version (DLF format): X.Y.ZTT"
+    name: firmware_version
+    type: uint16
+    unit: ""
+    register_type: holding
+    lenght: 1
+  "1701":
+    display_name: "Present Language Version (DLF format): X.Y.ZTT"
+    name: language_version
+    type: uint16
+    unit: ""
+    register_type: holding
+    lenght: 1
+  "1845":
+    display_name: "Year 0-99 (year from 2000 to 2099)"
+    name: year
+    type: uint16
+    unit: ""
+    register_type: holding
+    lenght: 1
+    write_access: false # but writable via the command interface (see User Manual)
+  "1846":
+    display_name: "Month (b11:b8), Weekday (b7:b5), Day (b4:b0)"
+    name: month_weekday_day
+    type: uint16
+    unit: ""
+    register_type: holding
+    lenght: 1
+    write_access: false # but writable via the command interface (see User Manual)
+  "1847":
+    display_name: "Hour (b12:b8) and Minute (b5:b0)"
+    name: hour_minute
+    type: uint16
+    unit: ""
+    register_type: holding
+    lenght: 1
+    write_access: false # but writable via the command interface (see User Manual)
+  "1848":
+    display_name: "Millisecond"
+    name: millisecond
+    type: uint16
+    unit: ""
+    register_type: holding
+    lenght: 1
+    write_access: false # but writable via the command interface (see User Manual)
+
+  ### Meter Setup and Status
+  # TODO
+
+  ### Energy Pulse Output Setup
+  # TODO
+
+  ### Command Interface
+  # TODO
+
+  ### Communications
+  # TODO
+
+  ### Input Metering Setup
+  # TODO
+
+  ### Digital Inputs
+  # TODO
+
+  ### Digital Outputs
+  # TODO
+
+  ### Basic Meter Data
+  # Current
+  "3000":
+    display_name: "I1: phase 1 current"
+    name: phase1_current_in
+    type: float32
+    unit: A
+    register_type: holding
+    length: 2 # this could be inferred from the type
+  "3002":
+    display_name: "I2: phase 2 current"
+    name: phase2_current_in
+    type: float32
+    unit: A
+    register_type: holding
+    length: 2
+  "3004":
+    display_name: "I3: phase 3 current"
+    name: phase3_current_in
+    type: float32
+    unit: A
+    register_type: holding
+    length: 2
+  "3006":
+    display_name: "In: Neutral current"
+    name: neutral_current_in
+    type: float32
+    unit: A
+    register_type: holding
+    length: 2
+  "3010":
+    display_name: "Current Avg"
+    name: current_avg
+    type: float32
+    unit: A
+    register_type: holding
+    length: 2
+  # Voltage
+  "3020":
+    display_name: "Voltage L1-L2"
+    name: voltage_l1_l2
+    type: float32
+    unit: V
+    register_type: holding
+    length: 2
+  "3022":
+    display_name: "Voltage L2-L3"
+    name: voltage_l2_l3
+    type: float32
+    unit: V
+    register_type: holding
+    length: 2
+  "3024":
+    display_name: "Voltage L3-L1"
+    name: voltage_l3_l1
+    type: float32
+    unit: V
+    register_type: holding
+    length: 2
+  "3026":
+    display_name: "Voltage L-L-Avg"
+    name: voltage_l_l_avg
+    type: float32
+    unit: V
+    register_type: holding
+    length: 2
+  "3028":
+    display_name: "Voltage L1-N"
+    name: voltage_l1_n
+    type: float32
+    unit: V
+    register_type: holding
+    length: 2
+  "3030":
+    display_name: "Voltage L2-N"
+    name: voltage_l2_n
+    type: float32
+    unit: V
+    register_type: holding
+    length: 2
+  "3032":
+    display_name: "Voltage L3-N"
+    name: voltage_l3_n
+    type: float32
+    unit: V
+    register_type: holding
+    length: 2
+  "3036":
+    display_name: "Voltage L-N Avg"
+    name: voltage_l_n_avg
+    type: float32
+    unit: V
+    register_type: holding
+    length: 2
+
+  # Power
+
+  ### Demand
+  ### MinMax Reset
+  ### Minimum Values
+  ### Maximum Values
+  ### MinMax with Time Stamp
+  ### Power Quality
+  ### Alarms
+  ### Energy Log
+  ### Flex log record information
+  ### Flex log configuration information
+  ### Read Device Identification
