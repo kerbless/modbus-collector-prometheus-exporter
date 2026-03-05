@@ -1,0 +1,9 @@
+# Use this in your prometheus.yaml
+
+scrape_configs:
+  # your other jobs...
+
+  - job_name: "modbus-exporter"
+    static_configs:
+      - targets:
+          - "localhost:8400"
