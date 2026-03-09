@@ -345,9 +345,9 @@ registers:
     register_type: holding
     length: 2
 
-  ## Energy, energy by tariff and input metering
+  ## Energy, energy by tariff and input metering (!?)
 
-  ### Demand
+  ### Demand (!)
   ### MinMax Reset
   ### Minimum Values
   ### Maximum Values
