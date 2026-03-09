@@ -30,7 +30,32 @@ devices = [
 
 # OpenModbusSpecs to Pymodbus unit mapping (TODO: move to file)
 # https://pymodbus.readthedocs.io/en/latest/source/simulator/datamodel.html
-unit_mapping = {""}
+openModbusUnits = [
+    "int8",
+    "uint8",
+    "int16",
+    "uint16",
+    "int32",
+    "uint32",
+    "int64",
+    "uint64",
+    "float32",
+    "float64",
+    "string",
+    "bool",
+]
+pyModbusUnits = [
+    "INT16",
+    "UINT16",
+    "INT32",
+    "UINT32",
+    "INT64",
+    "UINT64",
+    "FLOAT32",
+    "FLOAT64",
+    "STRING",
+]
+
 # will use to call the pymodbus function with something like https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
 
 # Dictionary containing all gauges (one per register) for a generic device (differentiated using labels!) used to export the metrics
@@ -122,6 +147,7 @@ def main():
 
                 # bulk read
                 try:
+                    # The multimeter specification specifically requests using the read holding registers function (0x03) in our use case.
                     reading = pymodbus_client.read_holding_registers(
                         address=int(register[reg_index]),
                         count=tot_len,
