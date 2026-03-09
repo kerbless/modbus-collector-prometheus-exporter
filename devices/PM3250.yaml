@@ -8,120 +8,18 @@ device:
   protocol: modbus_rtu
 
 registers:
-  ##### Flex log and command interface ??
-
+  ### Flex log and command interface ??
   ### System
-  "30":
-    display_name: "Meter Name"
-    name: meter_name
-    type: string # UTF8?
-    unit: ""
-    register_type: holding
-    length: 20
-  "50":
-    display_name: "Meter Model"
-    name: meter_model
-    type: string
-    unit: ""
-    register_type: holding
-    lenght: 20
-  "70":
-    display_name: "Manufacturer"
-    name: manufacturer
-    type: string
-    unit: ""
-    register_type: holding
-    lenght: 20
-  "130":
-    display_name: "Serial Number"
-    name: serial_number
-    type: uint32
-    unit: ""
-    register_type: holding
-    lenght: 2
-  "132":
-    display_name: "Date of Manufacture"
-    name: manufacture_date
-    type: string # Date/Time
-    unit: ""
-    register_type: holding
-    lenght: 4
-  "136":
-    display_name: "Hardware Revision"
-    name: hardware_revision
-    type: string # UTF8
-    unit: ""
-    register_type: holding
-    lenght: 5
-  "1637":
-    display_name: "Present Firmware Version (DLF format): X.Y.ZTT"
-    name: firmware_version
-    type: uint16
-    unit: ""
-    register_type: holding
-    lenght: 1
-  "1701":
-    display_name: "Present Language Version (DLF format): X.Y.ZTT"
-    name: language_version
-    type: uint16
-    unit: ""
-    register_type: holding
-    lenght: 1
-  "1845":
-    display_name: "Year 0-99 (year from 2000 to 2099)"
-    name: year
-    type: uint16
-    unit: ""
-    register_type: holding
-    lenght: 1
-    write_access: false # but writable via the command interface (see User Manual)
-  "1846":
-    display_name: "Month (b11:b8), Weekday (b7:b5), Day (b4:b0)"
-    name: month_weekday_day
-    type: uint16
-    unit: ""
-    register_type: holding
-    lenght: 1
-    write_access: false # but writable via the command interface (see User Manual)
-  "1847":
-    display_name: "Hour (b12:b8) and Minute (b5:b0)"
-    name: hour_minute
-    type: uint16
-    unit: ""
-    register_type: holding
-    lenght: 1
-    write_access: false # but writable via the command interface (see User Manual)
-  "1848":
-    display_name: "Millisecond"
-    name: millisecond
-    type: uint16
-    unit: ""
-    register_type: holding
-    lenght: 1
-    write_access: false # but writable via the command interface (see User Manual)
-
   ### Meter Setup and Status
-  # TODO
-
   ### Energy Pulse Output Setup
-  # TODO
-
   ### Command Interface
-  # TODO
-
   ### Communications
-  # TODO
-
   ### Input Metering Setup
-  # TODO
-
   ### Digital Inputs
-  # TODO
-
   ### Digital Outputs
-  # TODO
 
   ### Basic Meter Data
+  ## Current, voltage, power, power factor and frequency
   # Current
   "3000":
     display_name: "I1: phase 1 current"
@@ -217,6 +115,237 @@ registers:
     length: 2
 
   # Power
+  "3054":
+    display_name: "Active Power Phase 1"
+    name: active_power_phase1
+    type: float32
+    unit: kW
+    register_type: holding
+    length: 2
+  "3056":
+    display_name: "Active Power Phase 2"
+    name: active_power_phase2
+    type: float32
+    unit: kW
+    register_type: holding
+    length: 2
+  "3058":
+    display_name: "Active Power Phase 3"
+    name: active_power_phase3
+    type: float32
+    unit: kW
+    register_type: holding
+    length: 2
+  "3060":
+    display_name: "Total Active Power"
+    name: active_power_total
+    type: float32
+    unit: kW
+    register_type: holding
+    length: 2
+  "3062":
+    display_name: "Reactive Power Phase 1"
+    name: reactive_power_phase1
+    type: float32
+    unit: kVAR
+    register_type: holding
+    length: 2
+  "3064":
+    display_name: "Reactive Power Phase 2"
+    name: reactive_power_phase2
+    type: float32
+    unit: kVAR
+    register_type: holding
+    length: 2
+  "3066":
+    display_name: "Reactive Power Phase 3"
+    name: reactive_power_phase3
+    type: float32
+    unit: kVAR
+    register_type: holding
+    length: 2
+  "3068":
+    display_name: "Total Reactive Power"
+    name: reactive_power_total
+    type: float32
+    unit: kVAR
+    register_type: holding
+    length: 2
+  "3070":
+    display_name: "Apparent Power Phase 1"
+    name: apparent_power_phase1
+    type: float32
+    unit: kVA
+    register_type: holding
+    length: 2
+  "3072":
+    display_name: "Apparent Power Phase 2"
+    name: apparent_power_phase2
+    type: float32
+    unit: kVA
+    register_type: holding
+    length: 2
+  "3074":
+    display_name: "Apparent Power Phase 3"
+    name: apparent_power_phase3
+    type: float32
+    unit: kVA
+    register_type: holding
+    length: 2
+  "3076":
+    display_name: "Total Apparent Power"
+    name: apparent_power_total
+    type: float32
+    unit: kVA
+    register_type: holding
+    length: 2
+
+  # Power Factor
+  "3078":
+    display_name: "Power Factor Phase 1 (Complex)"
+    name: power_factor_phase1
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "3080":
+    display_name: "Power Factor Phase 2 (Complex)"
+    name: power_factor_phase2
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "3082":
+    display_name: "Power Factor Phase 3 (Complex)"
+    name: power_factor_phase3
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "3084":
+    display_name: "Power Factor Total" # : -2<PF<-1: Quad 2, active power negative, capacitive -1<PF<0: Quad 3, active power negative, inductive 0<PF<1: Quad 1, active power positive, inductive 1<PF<2: Quad 4, active power positive, capacitive
+    name: power_factor_total
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+
+  # Current Unbalance
+  "3012":
+    display_name: "Current Unbalance I1 (%)"
+    name: current_percent_unbalance_I1
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "3014":
+    display_name: "Current Unbalance I2 (%)"
+    name: current_percent_unbalance_I2
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "3016":
+    display_name: "Current Unbalance I3 (%)"
+    name: current_percent_unbalance_I3
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "3018":
+    display_name: "Current Unbalance Worst (%)"
+    name: current_percent_unbalance_worst
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+
+  # Voltage Unbalance
+  "3038":
+    display_name: "Voltage Unbalance L1-L2 (%)"
+    name: voltage_percent_unbalance_l1_l2
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "3040":
+    display_name: "Voltage Unbalance L2-L3 (%)"
+    name: voltage_percent_unbalance_l2_l3
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "3042":
+    display_name: "Voltage Unbalance L3-L1 (%)"
+    name: voltage_percent_unbalance_l3_l1
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "3044":
+    display_name: "Voltage Unbalance L-L Worst (%)"
+    name: voltage_percent_unbalance_l_l_worst
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "3046":
+    display_name: "Voltage Unbalance L1-N (%)"
+    name: voltage_percent_unbalance_l1_n
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "3048":
+    display_name: "Voltage Unbalance L2-N (%)"
+    name: voltage_percent_unbalance_l2_n
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "3050":
+    display_name: "Voltage Unbalance L3-N (%)"
+    name: voltage_percent_unbalance_l3_n
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "3052":
+    display_name: "Voltage Unbalance L-N Worst (%)"
+    name: voltage_percent_unbalance_l_n_worst
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+
+  # Tangent Phi (Reactive Factor)
+  "3108":
+    display_name: "Tangent Phi Total"
+    name: tangent_phi_total
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+
+  # Frequency
+  "3110":
+    display_name: "Frequency"
+    name: frequency
+    type: float32
+    unit: Hz
+    register_type: holding
+    length: 2
+
+  # Temperature
+  "3132":
+    display_name: "Temperature (Celsius)"
+    name: temperature_celsius
+    type: float32
+    unit: "°C"
+    register_type: holding
+    length: 2
+
+  ## Energy, energy by tariff and input metering
 
   ### Demand
   ### MinMax Reset
