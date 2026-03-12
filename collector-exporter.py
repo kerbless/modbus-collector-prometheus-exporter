@@ -96,9 +96,6 @@ def main():
                 registers.keys()
             )  # ordered registers that will be read
 
-            for i in register_keys:
-                print(f"reading {i} ")
-
             next_reg_index = 0
             while next_reg_index < len(registers):  # TODO: test
                 reg_index = next_reg_index
