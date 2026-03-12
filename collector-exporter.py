@@ -82,8 +82,6 @@ pymodbus_client = ModbusSerialClient(
 # get registers and their keys ordered
 addresses = sorted(registers.keys())
 
-print(registers[addresses[0]]["name"])
-
 # detect next continuous block to read
 subsets = []
 current_subset = []
@@ -95,9 +93,14 @@ for i in range(0, len(addresses) - 1):
     current_subset.append(curr)
 
     # split when NOT CONTIGUOUS, i.e. curr address + curr length != next address
-    if int(curr) + registers[curr]["length"] != int(next):
+    # or when max len (125)
+    if (int(curr) + registers[curr]["length"] != int(next)) or (
+        int(curr) - int(current_subset[0]) > 125
+    ):
         subsets.append(current_subset)
         current_subset = []
+
+print(subsets)
 
 
 def main():
@@ -114,9 +117,16 @@ def main():
                 # bulk read
                 try:
                     # The multimeter specification specifically requests using the read holding registers function (0x03) in our use case.
+
+                    # reading length for bulk read or single register
+                    reading_length = max(
+                        int(subset[-1]) - int(subset[0]),
+                        int(registers[subset[0]]["length"]),
+                    )
+
                     reading = pymodbus_client.read_holding_registers(
                         address=int(subset[0]),
-                        count=int(subset[-1]) - int(subset[0]),
+                        count=reading_length,
                         device_id=device["rs485_id"],
                     )
 
@@ -125,6 +135,8 @@ def main():
                     pymodbus_client.close()
                     return
 
+                print(subset)
+                print(reading.registers)
                 # convert raw value to type (TODO: make dynamic with profile)
                 # value = pymodbus_client.convert_from_registers(
                 #     reading.registers,
