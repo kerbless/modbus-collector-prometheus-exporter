@@ -7,20 +7,24 @@ device:
   description: Three-phase power meter
   protocol: modbus_rtu
 
-registers:
-  ### Flex log and command interface ??
-  ### System
-  ### Meter Setup and Status
-  ### Energy Pulse Output Setup
-  ### Command Interface
-  ### Communications
-  ### Input Metering Setup
-  ### Digital Inputs
-  ### Digital Outputs
+  # Flex log and command interface ??
 
-  ### Basic Meter Data
+registers:
+  # ALL EMPTY SECTIONS (same or decreasing level) SKIPPED
+  # System
+  # Meter Setup and Status
+  # Energy Pulse Output Setup
+  # Command Interface
+  # Communications
+  # Input Metering Setup
+  ## Input Metering Channel 01
+  ## Input Metering Channel 02
+  # Digital Inputs
+  # Digital Outputs
+
+  # Basic Meter Data
   ## Current, voltage, power, power factor and frequency
-  # Current
+  #### Current
   "3000":
     display_name: "I1: phase 1 current"
     name: phase1_current_in
@@ -56,7 +60,8 @@ registers:
     unit: A
     register_type: holding
     length: 2
-  # Voltage
+
+  #### Voltage
   "3020":
     display_name: "Voltage L1-L2"
     name: voltage_l1_l2
@@ -114,7 +119,7 @@ registers:
     register_type: holding
     length: 2
 
-  # Power
+  #### Power
   "3054":
     display_name: "Active Power Phase 1"
     name: active_power_phase1
@@ -200,7 +205,7 @@ registers:
     register_type: holding
     length: 2
 
-  # Power Factor
+  #### Power Factor
   "3078":
     display_name: "Power Factor Phase 1 (Complex)"
     name: power_factor_phase1
@@ -223,102 +228,107 @@ registers:
     register_type: holding
     length: 2
   "3084":
-    display_name: "Power Factor Total" # : -2<PF<-1: Quad 2, active power negative, capacitive -1<PF<0: Quad 3, active power negative, inductive 0<PF<1: Quad 1, active power positive, inductive 1<PF<2: Quad 4, active power positive, capacitive
+    display_name: "Power Factor Total"
     name: power_factor_total
     type: float32
     unit: ""
     register_type: holding
     length: 2
+    notes: |
+      "-2<PF<-1: Quad 2, active power negative, capacitive
+      -1<PF<0: Quad 3, active power negative, inductive
+      0<PF<1: Quad 1, active power positive, inductive
+      1<PF<2: Quad 4, active power positive, capacitive"
 
-  # Current Unbalance
+  #### Current Unbalance
   "3012":
     display_name: "Current Unbalance I1 (%)"
-    name: current_percent_unbalance_I1
+    name: current_unbalance_I1_percent
     type: float32
     unit: ""
     register_type: holding
     length: 2
   "3014":
     display_name: "Current Unbalance I2 (%)"
-    name: current_percent_unbalance_I2
+    name: current_unbalance_I2_percent
     type: float32
     unit: ""
     register_type: holding
     length: 2
   "3016":
     display_name: "Current Unbalance I3 (%)"
-    name: current_percent_unbalance_I3
+    name: current_unbalance_I3_percent
     type: float32
     unit: ""
     register_type: holding
     length: 2
   "3018":
     display_name: "Current Unbalance Worst (%)"
-    name: current_percent_unbalance_worst
+    name: current_unbalance_worst_percent
     type: float32
     unit: ""
     register_type: holding
     length: 2
 
-  # Voltage Unbalance
+  #### Voltage Unbalance
   "3038":
     display_name: "Voltage Unbalance L1-L2 (%)"
-    name: voltage_percent_unbalance_l1_l2
+    name: voltage_unbalance_l1_l2_percent
     type: float32
     unit: ""
     register_type: holding
     length: 2
   "3040":
     display_name: "Voltage Unbalance L2-L3 (%)"
-    name: voltage_percent_unbalance_l2_l3
+    name: voltage_unbalance_l2_l3_percent
     type: float32
     unit: ""
     register_type: holding
     length: 2
   "3042":
     display_name: "Voltage Unbalance L3-L1 (%)"
-    name: voltage_percent_unbalance_l3_l1
+    name: voltage_unbalance_l3_l1_percent
     type: float32
     unit: ""
     register_type: holding
     length: 2
   "3044":
     display_name: "Voltage Unbalance L-L Worst (%)"
-    name: voltage_percent_unbalance_l_l_worst
+    name: voltage_unbalance_l_l_worst_percent
     type: float32
     unit: ""
     register_type: holding
     length: 2
   "3046":
     display_name: "Voltage Unbalance L1-N (%)"
-    name: voltage_percent_unbalance_l1_n
+    name: voltage_unbalance_l1_n_percent
     type: float32
     unit: ""
     register_type: holding
     length: 2
   "3048":
     display_name: "Voltage Unbalance L2-N (%)"
-    name: voltage_percent_unbalance_l2_n
+    name: voltage_unbalance_l2_n_percent
     type: float32
     unit: ""
     register_type: holding
     length: 2
   "3050":
     display_name: "Voltage Unbalance L3-N (%)"
-    name: voltage_percent_unbalance_l3_n
+    name: voltage_unbalance_l3_n_percent
     type: float32
     unit: ""
     register_type: holding
     length: 2
   "3052":
     display_name: "Voltage Unbalance L-N Worst (%)"
-    name: voltage_percent_unbalance_l_n_worst
+    name: voltage_unbalance_l_n_worst_percent
     type: float32
     unit: ""
     register_type: holding
     length: 2
 
-  # Tangent Phi (Reactive Factor)
+  #### Tangent Phi (Reactive Factor)
   "3108":
     display_name: "Tangent Phi Total"
     name: tangent_phi_total
@@ -327,7 +337,7 @@ registers:
     register_type: holding
     length: 2
 
-  # Frequency
+  #### Frequency
   "3110":
     display_name: "Frequency"
     name: frequency
@@ -336,7 +346,7 @@ registers:
     register_type: holding
     length: 2
 
-  # Temperature
+  #### Temperature
   "3132":
     display_name: "Temperature (Celsius)"
     name: temperature_celsius
@@ -345,16 +355,243 @@ registers:
     register_type: holding
     length: 2
 
-  ## Energy, energy by tariff and input metering (!?)
+  ## Energy, energy by tariff and input metering
 
-  ### Demand (!)
-  ### MinMax Reset
-  ### Minimum Values
-  ### Maximum Values
-  ### MinMax with Time Stamp
-  ### Power Quality
-  ### Alarms
-  ### Energy Log
-  ### Flex log record information
-  ### Flex log configuration information
-  ### Read Device Identification
+  ### Resets and active tariff information
+  ### Energy values – 64-bit integer
+  #### Energy Reset (Partial Energy, Energy by Tariff, Phase Energy)
+  #### Energy by Tariff Import (int64)
+  #### Input metering
+
+  ### Energy values - 32-bit floating point
+  #### Total Energy
+  "45166":
+    display_name: "Total Active Energy Import"
+    name: total_active_energy_import
+    type: float32
+    unit: Wh
+    register_type: holding
+    length: 2
+  "45168":
+    display_name: "Total Active Energy Export"
+    name: total_active_energy_export
+    type: float32
+    unit: Wh
+    register_type: holding
+    length: 2
+  "45170":
+    display_name: "Total Reactive Energy Import"
+    name: total_reactive_energy_import
+    type: float32
+    unit: VARh
+    register_type: holding
+    length: 2
+  "45172":
+    display_name: "Total Reactive Energy Export"
+    name: total_reactive_energy_export
+    type: float32
+    unit: VARh
+    register_type: holding
+    length: 2
+  "45174":
+    display_name: "Total Apparent Energy Import"
+    name: total_apparent_energy_import
+    type: float32
+    unit: VAh
+    register_type: holding
+    length: 2
+  "45176":
+    display_name: "Total Apparent Energy Export"
+    name: total_apparent_energy_export
+    type: float32
+    unit: VAh
+    register_type: holding
+    length: 2
+
+  #### Partial Energy Import
+
+  #### Phase Energy Import
+  "45184":
+    display_name: "Active Energy Import Phase 1"
+    name: active_energy_import_phase1
+    type: float32
+    unit: Wh
+    register_type: holding
+    length: 2
+  "45186":
+    display_name: "Active Energy Import Phase 2"
+    name: active_energy_import_phase2
+    type: float32
+    unit: Wh
+    register_type: holding
+    length: 2
+  "45188":
+    display_name: "Active Energy Import Phase 3"
+    name: active_energy_import_phase3
+    type: float32
+    unit: Wh
+    register_type: holding
+    length: 2
+  "45190":
+    display_name: "Reactive Energy Import Phase 1"
+    name: reactive_energy_import_phase1
+    type: float32
+    unit: VARh
+    register_type: holding
+    length: 2
+  "45192":
+    display_name: "Reactive Energy Import Phase 2"
+    name: reactive_energy_import_phase2
+    type: float32
+    unit: VARh
+    register_type: holding
+    length: 2
+  "45194":
+    display_name: "Reactive Energy Import Phase 3"
+    name: reactive_energy_import_phase3
+    type: float32
+    unit: VARh
+    register_type: holding
+    length: 2
+  "45196":
+    display_name: "Apparent Energy Import Phase 1"
+    name: apparent_energy_import_phase1
+    type: float32
+    unit: VAh
+    register_type: holding
+    length: 2
+  "45198":
+    display_name: "Apparent Energy Import Phase 2"
+    name: apparent_energy_import_phase2
+    type: float32
+    unit: VAh
+    register_type: holding
+    length: 2
+  "45200":
+    display_name: "Apparent Energy Import Phase 3"
+    name: apparent_energy_import_phase3
+    type: float32
+    unit: VAh
+    register_type: holding
+    length: 2
+
+  #### Energy by Tariff Import (float32)
+
+  # Demand
+  # MinMax Reset
+  # Minimum Values
+  # Maximum Values
+  # MinMax with Time Stamp
+  # Power Quality
+
+  "45100":
+    display_name: "THD Current I1 (%)"
+    name: thd_current_I1_percent
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "45102":
+    display_name: "THD Current I2 (%)"
+    name: thd_current_I2_percent
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "45104":
+    display_name: "THD Current I3 (%)"
+    name: thd_current_I3_percent
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "45106":
+    display_name: "THD Current Neutral (%)"
+    name: thd_current_neutral_percent
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "45108":
+    display_name: "THD Phase Current Worst (%)"
+    name: thd_phase_current_worst
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "45110":
+    display_name: "THD Voltage L1-L2 (%)"
+    name: thd_voltage_l1_l2_percent
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "45112":
+    display_name: "THD Voltage L2-L3 (%)"
+    name: thd_voltage_l2_l3_percent
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "45114":
+    display_name: "THD Voltage L3-L1 (%)"
+    name: thd_voltage_l3_l1_percent
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "45116":
+    display_name: "THD Voltage L-L Avg (%)"
+    name: thd_voltage_l_l_avg_percent
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "45118":
+    display_name: "THD Voltage L-L Worst (%)"
+    name: thd_voltage_l_l_worst_percent
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "45120":
+    display_name: "THD Voltage L1-N (%)"
+    name: thd_voltage_l1_n_percent
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "45122":
+    display_name: "THD Voltage L2-N (%)"
+    name: thd_voltage_l2_n_percent
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "45124":
+    display_name: "THD Voltage L3-N (%)"
+    name: thd_voltage_l3_n_percent
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "45126":
+    display_name: "THD Voltage L-N Avg (%)"
+    name: thd_voltage_l_n_avg_percent
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+  "45128":
+    display_name: "THD Voltage L-N Worst (%)"
+    name: thd_voltage_l_n_worst_percent
+    type: float32
+    unit: ""
+    register_type: holding
+    length: 2
+
+  # Alarms
+  # Energy Log
+  # Flex log record information
+  # Flex log configuration information
+  # Read Device Identification
