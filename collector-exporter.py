@@ -30,31 +30,20 @@ devices = [
 
 # OpenModbusSpecs to Pymodbus unit mapping (TODO: move to file)
 # https://pymodbus.readthedocs.io/en/latest/source/simulator/datamodel.html
-openModbusUnits = [
-    "int8",
-    "uint8",
-    "int16",
-    "uint16",
-    "int32",
-    "uint32",
-    "int64",
-    "uint64",
-    "float32",
-    "float64",
-    "string",
-    "bool",
-]
-pyModbusUnits = [
-    "INT16",
-    "UINT16",
-    "INT32",
-    "UINT32",
-    "INT64",
-    "UINT64",
-    "FLOAT32",
-    "FLOAT64",
-    "STRING",
-]
+openModbusUnits_to_pyModbusUnits = {
+    "int8": "",
+    "uint8": "",
+    "int16": "INT16",
+    "uint16": "UINT16",
+    "int32": "INT32",
+    "uint32": "UINT32",
+    "int64": "INT64",
+    "uint64": "UINT64",
+    "float32": "FLOAT32",
+    "float64": "FLOAT64",
+    "string": "STRING",
+    "bool": "",
+}
 
 # will use to call the pymodbus function with something like https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
 
