@@ -45,7 +45,7 @@ openModbusUnits_to_pyModbusUnits = {
     "bool": "",
 }
 
-# will use to call the pymodbus function with something like https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
+e  # will use to call the pymodbus function with something like https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
 
 # Dictionary containing all gauges (one per register) for a generic device (differentiated using labels!) used to export the metrics
 device = devices[0]
@@ -58,13 +58,6 @@ gauges = {
     )
     for register, register_profile in device["registers"].items()
 }
-
-# Starting print.
-print("Exporter multimetri avviato, inizio raccolta per le seguenti metriche:")
-for device in devices:
-    for register, register_profile in device["registers"].items():
-        print(f"Device {device['name']}: {register_profile['name']} (addr: {register})")
-
 
 # PYMODBUS CLIENT
 # https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.ModbusSerialClient
