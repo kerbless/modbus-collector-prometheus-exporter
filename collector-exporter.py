@@ -128,7 +128,7 @@ def main():
                 try:
                     # The multimeter specification specifically requests using the read holding registers function (0x03) in our use case.
                     reading = pymodbus_client.read_holding_registers(
-                        address=int(register[reg_index]),
+                        address=int(registers[reg_index]),
                         count=tot_len,
                         device_id=device["rs485_id"],
                     )
