@@ -45,7 +45,7 @@ openModbusUnits_to_pyModbusUnits = {
     "bool": "",
 }
 
-e  # will use to call the pymodbus function with something like https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
+# will use to call the pymodbus function with something like https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
 
 # Dictionary containing all gauges (one per register) for a generic device (differentiated using labels!) used to export the metrics
 device = devices[0]
