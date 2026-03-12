@@ -33,16 +33,16 @@ devices = [
 unit_mapping = {""}
 # will use to call the pymodbus function with something like https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
 
-# Dictionary containing all gauges (one per register) for the given device used to export the metrics
-# tip: Gauge(name, description, labels)
-
+# Dictionary containing all gauges (one per register) for a generic device (differentiated using labels!) used to export the metrics
+device = devices[0]
 gauges = {
-    device["name"]: Gauge(
-        device["name"],
-        device["description"],
+    # tip: Gauge(name, description, labels)
+    register: Gauge(
+        f"{device['name']}_{register_profile['name']}",
+        f'Modbus device {device["name"]} metric "{register_profile["display_name"]}" ({register_profile["unit"]})',
         ["modbus_device", "modbus_rs485_id"],  # TODO: make dynamic labels
     )
-    for device in devices
+    for register, register_profile in device["registers"].items()
 }
 
 # Starting print.
@@ -88,6 +88,9 @@ def main():
             register_keys = sorted(
                 registers.keys()
             )  # ordered registers that will be read
+
+            for i in register_keys:
+                print(f"reading {i} ")
 
             next_reg_index = 0
             while next_reg_index < len(registers):  # TODO: test
