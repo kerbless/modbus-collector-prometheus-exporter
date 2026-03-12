@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import re
 import sys
 import time
 
@@ -10,26 +11,25 @@ from pymodbus.client import ModbusSerialClient  # pymodbus client rtu (over rs48
 
 # Import device profile
 with open("./devices/PM3250.yaml", "r") as file:
-    pm3250 = yaml.safe_load(file)
+    profile = yaml.safe_load(file)
 
-# Defining rtu devices that will be collected and exported
+# Defining rtu devices that will be collected and exported (SAME PROFILE)
 devices = [
     {
         "name": "modbus_power_meter_general",
         "description": "multimetro generale",
-        "registers": pm3250["registers"],
         "rs485_id": 3,
     },
     {
         "name": "modbus_power_meter_cooling",
         "description": "multimetro gruppo frigo",
-        "registers": pm3250["registers"],  # no dup data right?
         "rs485_id": 4,
     },
 ]
 
 # OpenModbusSpecs to Pymodbus unit mapping (TODO: move to file)
 # https://pymodbus.readthedocs.io/en/latest/source/simulator/datamodel.html
+# will use to call the pymodbus function with something like https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
 openModbusUnits_to_pyModbusUnits = {
     "int8": "",
     "uint8": "",
@@ -45,18 +45,15 @@ openModbusUnits_to_pyModbusUnits = {
     "bool": "",
 }
 
-# will use to call the pymodbus function with something like https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
-
-# Dictionary containing all gauges (one per register) for a generic device (differentiated using labels!) used to export the metrics
-device = devices[0]
+# Dictionary containing all gauges (register = metric) used for prometheus
 gauges = {
     # tip: Gauge(name, description, labels)
-    register: Gauge(
-        f"{device['name']}_{register_profile['name']}",
-        f'Modbus device {device["name"]} metric "{register_profile["display_name"]}" ({register_profile["unit"]})',
+    register["name"]: Gauge(
+        register["name"],
+        f'"{register["display_name"]}" ({register["unit"]})',
         ["modbus_device", "modbus_rs485_id"],  # TODO: make dynamic labels
     )
-    for register, register_profile in device["registers"].items()
+    for register in profile["registers"].values()
 }
 
 # PYMODBUS CLIENT
@@ -80,6 +77,33 @@ pymodbus_client = ModbusSerialClient(
     # trace_connect – Called when connected/disconnected
 )
 
+# Calculate subgroups for bulk reads
+# get registers and their keys ordered
+registers = profile["registers"]
+addresses = sorted(registers.keys())
+
+print(registers[addresses[0]]["name"])
+
+# detect next continuous block to read
+subsets = []
+current_subset = []
+
+# for each register address index
+for i in range(0, len(addresses) - 1):
+    curr = addresses[i]
+    next = addresses[i + 1]
+    current_subset.append(curr)
+
+    # if CONTIGUOUS, i.e. curr address + curr length = next address
+    if int(curr) + registers[curr]["length"] == int(next):
+        continue
+    else:
+        subsets.append(current_subset)
+        current_subset = []
+        continue
+
+print(subsets)
+
 
 def main():
     # connect to pymodbus client
@@ -91,13 +115,7 @@ def main():
     # Continuously reading/exporting each register metrics
     while True:
         for device in devices:
-            registers = device["registers"]
-            register_keys = sorted(
-                registers.keys()
-            )  # ordered registers that will be read
-
-            next_reg_index = 0
-            while next_reg_index < len(registers):  # TODO: test
+            while next_reg_index < len(registers) and block_length < 125:
                 reg_index = next_reg_index
                 num_reg = 1  # number of register will be read
                 tot_len = registers[register_keys[reg_index]]["length"]  # total lenght
@@ -148,7 +166,7 @@ def main():
                 # )
 
                 # print(
-                #     f"reading {register_profile['name']} from device {device['name']} got {value} {type(value)}"
+                #     f"reading {register['name']} from device {device['name']} got {value} {type(value)}"
                 # )
 
                 # gauge.labels(name, id).set_to_current_time() # TODO: confirm that this is done automatically when .set
