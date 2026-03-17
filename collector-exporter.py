@@ -95,7 +95,7 @@ for i in range(0, len(addresses) - 1):
     current_subset.append(curr)
 
     # split when NOT CONTIGUOUS, i.e. curr address + curr length != next address
-    # or when max len (125)
+    # or when max len (125) TODO check max len works as expected
     if (int(curr) + registers[curr]["length"] != int(next)) or (
         int(curr) - int(current_subset[0]) > 125
     ):
