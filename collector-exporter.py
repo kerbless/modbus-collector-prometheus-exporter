@@ -116,11 +116,12 @@ def main():
             for subset in subsets:
                 # bulk read
                 try:
-                    # reading length for bulk read or single register
-                    reading_length = max(
-                        int(subset[-1]) - int(subset[0]),
-                        int(registers[subset[0]]["length"]),
+                    reading_length = (
+                        int(subset[-1])
+                        - int(subset[0])
+                        + int(registers[subset[-1]]["length"])
                     )
+                    print(f"Reading length of {subset} is {reading_length}")
 
                     # The multimeter specification specifically requests using the read holding registers function (0x03) in our use case.
                     reading = pymodbus_client.read_holding_registers(
@@ -165,8 +166,6 @@ def main():
                     gauge.labels(device["name"], device["rs485_id"]).set(value)
 
                     read_up_to += length
-
-                quit()
 
         time.sleep(1)
         print("\n")
