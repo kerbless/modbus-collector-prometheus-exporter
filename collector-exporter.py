@@ -102,8 +102,6 @@ for i in range(0, len(addresses) - 1):
         subsets.append(current_subset)
         current_subset = []
 
-print(subsets)
-
 
 def main():
     # connect to pymodbus client
@@ -136,13 +134,10 @@ def main():
                     pymodbus_client.close()
                     return
 
-                print(subset)
-                print(reading.registers)
-
                 read_up_to = 0
                 for register in subset:
                     length = registers[register]["length"]
-                    print(openModbusUnits_to_pyModbusUnits[registers[register]["type"]])
+
                     value = pymodbus_client.convert_from_registers(
                         reading.registers[read_up_to : read_up_to + length],
                         data_type=getattr(
@@ -157,11 +152,8 @@ def main():
 
                     gauge = gauges[registers[register]["name"]]
                     # check if set_to_current_time() happens automatically if there is something weird here with the time
-                    gauge.labels()
                     # labels: "modbus_device", "modbus_rtu_id" (TODO: make dynamic)
-                    gauges[register].labels(device["name"], device["rs485_id"]).set(
-                        value
-                    )
+                    gauge.labels(device["name"], device["rs485_id"]).set(value)
 
                     read_up_to += length
 
