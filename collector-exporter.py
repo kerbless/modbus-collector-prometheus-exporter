@@ -137,7 +137,6 @@ def main():
                 read_up_to = 0
                 for register in subset:
                     length = registers[register]["length"]
-
                     value = pymodbus_client.convert_from_registers(
                         reading.registers[read_up_to : read_up_to + length],
                         data_type=getattr(
@@ -146,9 +145,19 @@ def main():
                                 registers[register]["type"]
                             ],
                         ),  # here I need to map yaml data to pymodbus
-                        word_order="big",
+                        word_order="big",  # is this right?
                     )
-                    print(value)
+                    print(
+                        f"register {register} from subset {
+                            subset
+                        } was read in bulk reading as {reading}, it's slice {
+                            reading.registers[read_up_to : read_up_to + length]
+                        } converted as  {
+                            openModbusUnits_to_pyModbusUnits[
+                                registers[register]['type']
+                            ]
+                        } is {value}"
+                    )
 
                     gauge = gauges[registers[register]["name"]]
                     # check if set_to_current_time() happens automatically if there is something weird here with the time
