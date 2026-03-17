@@ -100,14 +100,13 @@ def main():
             for subset in subsets:
                 # bulk read
                 try:
-                    # The multimeter specification specifically requests using the read holding registers function (0x03) in our use case.
-
                     # reading length for bulk read or single register
                     reading_length = max(
                         int(subset[-1]) - int(subset[0]),
                         int(registers[subset[0]]["length"]),
                     )
 
+                    # The multimeter specification specifically requests using the read holding registers function (0x03) in our use case.
                     reading = pymodbus_client.read_holding_registers(
                         address=int(subset[0]),
                         count=reading_length,
