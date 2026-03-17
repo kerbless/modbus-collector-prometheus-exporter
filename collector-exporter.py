@@ -150,7 +150,7 @@ def main():
                     print(
                         f"register {register} from subset {
                             subset
-                        } was read in bulk reading as {reading}, it's slice {
+                        } was read in bulk reading as {reading.registers}, it's slice {
                             reading.registers[read_up_to : read_up_to + length]
                         } converted as  {
                             openModbusUnits_to_pyModbusUnits[
