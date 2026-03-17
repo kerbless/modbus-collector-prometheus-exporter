@@ -41,6 +41,24 @@ gauges = {
     for register in registers.values()
 }
 
+# OpenModbusSpecs to Pymodbus unit mapping (TODO: move to file)
+# https://pymodbus.readthedocs.io/en/latest/source/simulator/datamodel.html
+# will use to call the pymodbus function with something like https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
+openModbusUnits_to_pyModbusUnits = {
+    "int8": "",
+    "uint8": "",
+    "int16": "INT16",
+    "uint16": "UINT16",
+    "int32": "INT32",
+    "uint32": "UINT32",
+    "int64": "INT64",
+    "uint64": "UINT64",
+    "float32": "FLOAT32",
+    "float64": "FLOAT64",
+    "string": "STRING",
+    "bool": "",
+}
+
 # PYMODBUS CLIENT
 # https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.ModbusSerialClient
 
