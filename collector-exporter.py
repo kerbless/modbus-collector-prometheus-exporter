@@ -28,19 +28,18 @@ devices = [
 
 registers = profile["registers"]  # TODO filter needed ones and e.g. only float32
 
-# Dictionary containing all gauges (register = metric) used for prometheus
+# Dictionary containing all gauges used for prometheus
+# Each register becomes a metric (so a Gauge)
+# The naming tries to follow best practices (the "SHOUD" have a suffix describing the unit it's hard to apply here so that does not comply well)
 gauges = {
     # tip: Gauge(name, description, labels)
     register["name"]: Gauge(
-        register["name"],
+        f"modbus_pm3250_{register['name']}",  # note the hardcoded pm3250
         f'"{register["display_name"]}" ({register["unit"]})',
         ["modbus_device", "modbus_rs485_id"],  # TODO: make dynamic labels
     )
     for register in registers.values()
 }
-
-for gauge in gauges:
-    print(f"created gauge {gauge}")
 
 # PYMODBUS CLIENT
 # https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.ModbusSerialClient
