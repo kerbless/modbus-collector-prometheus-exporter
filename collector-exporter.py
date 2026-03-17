@@ -3,6 +3,7 @@
 import re
 import sys
 import time
+from posix import read
 
 import yaml  # requires pyyaml
 from prometheus_client import Gauge, start_http_server  # prometheus library
@@ -27,25 +28,8 @@ devices = [
     },
 ]
 
-# OpenModbusSpecs to Pymodbus unit mapping (TODO: move to file)
-# https://pymodbus.readthedocs.io/en/latest/source/simulator/datamodel.html
-# will use to call the pymodbus function with something like https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
-openModbusUnits_to_pyModbusUnits = {
-    "int8": "",
-    "uint8": "",
-    "int16": "INT16",
-    "uint16": "UINT16",
-    "int32": "INT32",
-    "uint32": "UINT32",
-    "int64": "INT64",
-    "uint64": "UINT64",
-    "float32": "FLOAT32",
-    "float64": "FLOAT64",
-    "string": "STRING",
-    "bool": "",
-}
+registers = profile["registers"]  # TODO filter needed ones and e.g. only float32
 
-registers = profile["registers"]
 # Dictionary containing all gauges (register = metric) used for prometheus
 gauges = {
     # tip: Gauge(name, description, labels)
@@ -56,6 +40,9 @@ gauges = {
     )
     for register in registers.values()
 }
+
+for gauge in gauges:
+    print(f"created gauge {gauge}")
 
 # PYMODBUS CLIENT
 # https://pymodbus.readthedocs.io/en/latest/source/client.html#pymodbus.client.ModbusSerialClient
@@ -137,23 +124,35 @@ def main():
 
                 print(subset)
                 print(reading.registers)
-                # convert raw value to type (TODO: make dynamic with profile)
-                # value = pymodbus_client.convert_from_registers(
-                #     reading.registers,
-                #     data_type=pymodbus_client.DATATYPE.INT32,  # here I need to map yaml data to pymodbus
-                #     word_order="big",
-                # )
 
-                # print(
-                #     f"reading {register['name']} from device {device['name']} got {value} {type(value)}"
-                # )
+                read_up_to = 0
+                for register in subset:
+                    length = registers[register]["length"]
+                    print(openModbusUnits_to_pyModbusUnits[registers[register]["type"]])
+                    value = pymodbus_client.convert_from_registers(
+                        reading.registers[read_up_to : read_up_to + length],
+                        data_type=getattr(
+                            pymodbus_client.DATATYPE,
+                            openModbusUnits_to_pyModbusUnits[
+                                registers[register]["type"]
+                            ],
+                        ),  # here I need to map yaml data to pymodbus
+                        word_order="big",
+                    )
+                    print(value)
 
-                # gauge.labels(name, id).set_to_current_time() # TODO: confirm that this is done automatically when .set
+                    gauge = gauges[registers[register]["name"]]
+                    # check if set_to_current_time() happens automatically if there is something weird here with the time
+                    gauge.labels()
+                    # labels: "modbus_device", "modbus_rtu_id" (TODO: make dynamic)
+                    gauges[register].labels(device["name"], device["rs485_id"]).set(
+                        value
+                    )
 
-                # labels: "modbus_device", "modbus_rtu_id" (TODO: make dynamic)
-                # gauges[device["name"]].labels(device["name"], device["rs485_id"]).set(
-                #     value
-                # )
+                    read_up_to += length
+
+                quit()
+
         time.sleep(1)
         print("\n")
 

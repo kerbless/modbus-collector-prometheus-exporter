@@ -25,8 +25,8 @@ device2 = ModbusDeviceContext(
     ir=ModbusSequentialDataBlock(1, [0] * 10),
 )
 
-device1.setValues(3, 3001, [12])
-device1.setValues(4, 3001, [12])
+device1.setValues(3, 3000, [19])
+device1.setValues(3, 3001, [0])
 
 # Map unit IDs to contexts
 devices = {
