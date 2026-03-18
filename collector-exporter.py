@@ -161,8 +161,10 @@ def main():
                     )
 
                     gauge = gauges[registers[register]["name"]]
-                    # check if set_to_current_time() happens automatically if there is something weird here with the time
                     # labels: "modbus_device", "modbus_rtu_id" (TODO: make dynamic)
+                    gauge.labels(
+                        device["name"], device["rs485_id"]
+                    ).set_to_current_time()
                     gauge.labels(device["name"], device["rs485_id"]).set(value)
 
                     read_up_to += length
