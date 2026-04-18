@@ -9,10 +9,12 @@ from pymodbus import ModbusException  # pymodbus exceptions
 from pymodbus.client import ModbusSerialClient  # pymodbus client rtu (over rs485)
 
 # Import device profile
+# TODO: to script config
 with open("./devices/PM3250.yaml", "r") as file:
     profile = yaml.safe_load(file)
 
 # Defining rtu devices that will be collected and exported (SAME PROFILE)
+# TODO: to script config (multi-profile)
 devices = [
     {
         "name": "modbus_power_meter_general",
@@ -30,13 +32,13 @@ registers = profile["registers"]  # TODO filter needed ones and e.g. only float3
 
 # Dictionary containing all gauges used for prometheus
 # Each register becomes a metric (so a Gauge)
-# The naming tries to follow best practices (the "SHOUD" have a suffix describing the unit it's hard to apply here so that does not comply well)
+# The naming tries to follow best practices (the "SHOULD" have a suffix describing the unit it's hard to apply here so for now it's not there).
 gauges = {
     # tip: Gauge(name, description, labels)
     register["name"]: Gauge(
         f"modbus_pm3250_{register['name']}",  # note the hardcoded pm3250
         f'"{register["display_name"]}" ({register["unit"]})',
-        ["modbus_device", "modbus_rs485_id"],  # TODO: make dynamic labels
+        ["modbus_device", "modbus_rs485_id"],  # TODO: dynamic labels
     )
     for register in registers.values()
 }
@@ -67,20 +69,22 @@ openModbusUnits_to_pyModbusUnits = {
 # https://pymodbus.readthedocs.io/en/latest/source/client.html#client-performance
 # https://pymodbus.readthedocs.io/en/latest/source/client.html#serial-rs-485
 
+
 pymodbus_client = ModbusSerialClient(
+    # TODO to script config
     port="/tmp/ttyV1",
     baudrate=38400,
-    bytesize=8,  # how much for our multimeters?
+    bytesize=8,  # TODO our use case
     stopbits=1,
     parity="E",
-    timeout=1,  # ?
-    retries=1,  #!?
+    timeout=1,  # TODO our use case
+    retries=1,  # TODO our use case
     # trace_packet – Called with bytestream received/to be sent
     # trace_pdu – Called with PDU received/to be sent
     # trace_connect – Called when connected/disconnected
 )
 
-# Calculate subgroups for bulk reads
+### Calculate subgroups for bulk reads
 # get registers and their keys ordered
 addresses = sorted(registers.keys())
 
@@ -116,6 +120,7 @@ def main():
             for subset in subsets:
                 # bulk read
                 try:
+                    # how many registers to read
                     reading_length = (
                         int(subset[-1])
                         - int(subset[0])
@@ -130,11 +135,13 @@ def main():
                         device_id=device["rs485_id"],
                     )
 
+                # bulk reading exception
                 except ModbusException as exc:
                     print(f"Received ModbusException({exc}) from library")
                     pymodbus_client.close()
                     return
 
+                # use readings
                 read_up_to = 0
                 for register in subset:
                     length = registers[register]["length"]
@@ -145,8 +152,8 @@ def main():
                             openModbusUnits_to_pyModbusUnits[
                                 registers[register]["type"]
                             ],
-                        ),  # here I need to map yaml data to pymodbus
-                        word_order="big",  # is this right?
+                        ),  # TODO: dynamic type (not needed for prom?)
+                        word_order="big",  # TODO: confirm
                     )
                     print(
                         f"register {register} from subset {
@@ -160,6 +167,7 @@ def main():
                         } is {value}"
                     )
 
+                    # update gauge
                     gauge = gauges[registers[register]["name"]]
                     # labels: "modbus_device", "modbus_rtu_id" (TODO: make dynamic)
                     gauge.labels(
