@@ -14,3 +14,5 @@ Per ricreare l'ambiente del progetto e testarlo:
 5. Se necessario, esegui il server che simula i dispositivi modbus con `uv run pymodbus_server.py`.
 6. Se necessario, verifica che il profilo del dispositivo sia conforme alle specifiche OpenModbusSpecs (cfr. https://github.com/stekker/OpenModbusSpecs/tree/main) con `uv run validate.py`. 
 7. Esegui l'exporter con `uv run exporter.py` e leggi l'output o le metriche esposte su localhost:8400 (vedi example_prometheus.yaml)
+
+In alternativa è possibile usare pip creando un ambiente virtuale manualmente e installando le dipendenze con `pip install -r requirements.txt`
