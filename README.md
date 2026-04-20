@@ -12,7 +12,7 @@ Per ricreare l'ambiente del progetto e testarlo:
 3. Dalla directory del repository esegui `uv sync` per configurare l'ambiente virtuale di Python.
 4. Se necessario, esegui `socat -d -d PTY,raw,echo=0,link=/tmp/ttyV0 PTY,raw,echo=0,link=/tmp/ttyV1` per simulare la connessione modbus.
 5. Se necessario, esegui il server che simula i dispositivi modbus con `uv run pymodbus_server.py`.
-6. Se necessario, verifica che il profilo del dispositivo sia conforme alle specifiche OpenModbusSpecs (cfr. https://github.com/stekker/OpenModbusSpecs/tree/main) con `uv run validate.py`. 
+6. Se necessario, verifica che il profilo del dispositivo sia conforme alle specifiche OpenModbusSpecs (cfr. https://github.com/stekker/OpenModbusSpecs/tree/main). 
 7. Esegui l'exporter con `uv run exporter.py` e leggi l'output o le metriche esposte su localhost:8400 (vedi example_prometheus.yaml)
 
 In alternativa è possibile usare pip creando un ambiente virtuale manualmente e installando le dipendenze con `pip install -r requirements.txt`
