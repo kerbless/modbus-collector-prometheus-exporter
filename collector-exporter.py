@@ -78,7 +78,7 @@ pymodbus_client = ModbusSerialClient(
     stopbits=1,
     parity="E",
     timeout=1,  # TODO our use case
-    retries=1,  # TODO our use case
+    retries=2,  # TODO our use case
     # trace_packet – Called with bytestream received/to be sent
     # trace_pdu – Called with PDU received/to be sent
     # trace_connect – Called when connected/disconnected
@@ -168,6 +168,10 @@ def main():
                         device["name"], device["rs485_id"]
                     ).set_to_current_time()
                     gauge.labels(device["name"], device["rs485_id"]).set(value)
+
+                    # debug
+                    if int(register) < 3020:
+                        print(f"exported {register} with {value}")
 
                     read_up_to += length
 
