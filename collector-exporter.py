@@ -126,13 +126,17 @@ def main():
                         - int(subset[0])
                         + int(registers[subset[-1]]["length"])
                     )
-                    print(f"Reading length of {subset} is {reading_length}")
 
                     # The multimeter specification specifically requests using the read holding registers function (0x03) in our use case.
                     reading = pymodbus_client.read_holding_registers(
                         address=int(subset[0]),
                         count=reading_length,
                         device_id=device["rs485_id"],
+                    )
+
+                    # debug
+                    print(
+                        f"reading {reading_length} addresses from {subset[0]} to {subset[-1]} gave {reading.registers}"
                     )
 
                 # bulk reading exception
@@ -145,6 +149,7 @@ def main():
                 read_up_to = 0
                 for register in subset:
                     length = registers[register]["length"]
+
                     value = pymodbus_client.convert_from_registers(
                         reading.registers[read_up_to : read_up_to + length],
                         data_type=getattr(
@@ -154,17 +159,6 @@ def main():
                             ],
                         ),  # TODO: dynamic type (not needed for prom?)
                         word_order="big",  # TODO: confirm
-                    )
-                    print(
-                        f"register {register} from subset {
-                            subset
-                        } was read in bulk reading as {reading.registers}, it's slice {
-                            reading.registers[read_up_to : read_up_to + length]
-                        } converted as  {
-                            openModbusUnits_to_pyModbusUnits[
-                                registers[register]['type']
-                            ]
-                        } is {value}"
                     )
 
                     # update gauge
