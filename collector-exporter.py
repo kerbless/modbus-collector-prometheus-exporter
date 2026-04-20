@@ -161,13 +161,21 @@ def main():
                         word_order="big",  # TODO: confirm
                     )
 
+                    # TODO: was last minute
+                    # Unwrap list types before converting to float
+                    if isinstance(value, list):
+                        scalar = value[0]
+                    else:
+                        scalar = value
+                    # convert_from_registers returns a union type (coil registers yield list[bool])
+
                     # update gauge
                     gauge = gauges[registers[register]["name"]]
                     # labels: "modbus_device", "modbus_rtu_id" (TODO: make dynamic)
                     gauge.labels(
                         device["name"], device["rs485_id"]
                     ).set_to_current_time()
-                    gauge.labels(device["name"], device["rs485_id"]).set(value)
+                    gauge.labels(device["name"], device["rs485_id"]).set(float(scalar))
 
                     # debug
                     if int(register) < 3020:
