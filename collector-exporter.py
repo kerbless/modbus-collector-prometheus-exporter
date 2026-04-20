@@ -29,16 +29,19 @@ devices = [
 ]
 
 registers = profile["registers"]  # TODO filter needed ones and e.g. only float32
+device_name = profile["device"][
+    "model"
+]  # Configure this as needed, e.g. profile["device"]["id"]
 
 # Dictionary containing all gauges used for prometheus
-# Each register becomes a metric (so a Gauge)
-# The naming tries to follow best practices (the "SHOULD" have a suffix describing the unit it's hard to apply here so for now it's not there).
+# Each register becomes a metric (Gauge)
+# The naming convention follows the best practices from prometheus (https://prometheus.io/docs/practices/naming/)
 gauges = {
-    # tip: Gauge(name, description, labels)
+    # Gauge(name, description, labels)
     register["name"]: Gauge(
-        f"modbus_pm3250_{register['name']}",  # note the hardcoded pm3250
+        f"modbus_{device_name}_{register['name']}_{register['unit']}",  # TODO: trailing _ no unit?
         f'"{register["display_name"]}" ({register["unit"]})',
-        ["modbus_device", "modbus_rs485_id"],  # TODO: dynamic labels
+        ["modbus_device", "modbus_rs485_id"],
     )
     for register in registers.values()
 }
