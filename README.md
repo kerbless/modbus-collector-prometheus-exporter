@@ -4,6 +4,8 @@
 
 Sviluppo di un exporter Prometheus in Python (usando la [libreria ufficiale di prometheus](https://prometheus.github.io/client_python/) e quella [pymodbus](https://pymodbus.readthedocs.io), seguendo le [best practices](https://prometheus.io/docs/practices/naming/)) per estrarre metriche tramite Modbus dai multimetri della sala macchine del DEIB in modo da calcolarne il PUE e integrarlo nello stack di monitoring tramite una dashboard su Grafana.
 
+Vedi il report "BURRONI_BLU_A_Prometheus_exporter_for_Modbus_connected_devices___enabling_continuous_energy_monitoring.pdf" per tutte le altre informazioni.
+
 ## Configurazione ambiente e test
 
 Per ricreare l'ambiente del progetto e testarlo:
